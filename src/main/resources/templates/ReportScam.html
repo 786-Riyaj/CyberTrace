@@ -1,0 +1,378 @@
+<!-- <html lang="en" th:replace="~{base :: layout(~{::main})}">
+
+<body>
+	<main>
+		<div class="container mt-4">
+
+			<div class="row justify-content-center">
+				<div class="col-md-10 mb-5">
+
+					<div class="card shadow-lg border-0" style="border-radius: 15px;">
+						<div class="card-header bg-danger text-white text-center py-3"
+							style="border-radius: 15px 15px 0 0;">
+							<h3 class="mb-0">🚨 Report a Scam</h3>
+							<p class="mb-0">Help us track and prevent online frauds</p>
+						</div>
+
+						<div class="card-body p-4">
+
+							<form action="/ReportScam" method="post" th:object="${dto}" enctype="multipart/form-data">
+
+								PERSONAL DETAILS
+								<h5 class="fw-bold text-secondary mb-3">🧑 Personal Details</h5>
+
+
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Full Name</label>
+										<input type="text" th:field="*{name}" class="form-control"
+											placeholder="Enter your name" required>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Contact No 📞</label>
+										<input type="text" th:field="*{contactNo}" class="form-control"
+											placeholder="Enter mobile number">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">WhatsApp No 💬</label>
+										<input type="text" th:field="*{whatsappNo}" class="form-control"
+											placeholder="WhatsApp number">
+									</div>
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Email ✉</label>
+										<input type="email" th:field="*{email}" class="form-control"
+											placeholder="Enter your email">
+									</div>
+
+									<div class="col-md-12 mb-3">
+										<label class="form-label">Address 📍</label>
+										<textarea th:field="*{address}" class="form-control" rows="2"
+											placeholder="Enter your address"></textarea>
+									</div>
+
+									<hr>
+
+									SCAM INFORMATION
+									<h5 class="fw-bold text-secondary mb-3">⚠ Scam Information</h5>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Type of Scam 🎭</label>
+										<select th:field="*{typeOfScam}" class="form-select">
+											<option value="">--Select Scam Type--</option>
+											<option value="">Select Scam Type</option>
+											<option value="Cyber Fraud">Cyber Fraud</option>
+											<option value="Identity Theft">Identity Theft</option>
+											<option value="Banking / UPI Fraud">Banking / UPI Fraud</option>
+											<option value="Social Media Scam">Social Media Scam</option>
+											<option value="Online Shopping Scam">Online Shopping Scam</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Platform 🌐</label>
+										<input type="text" th:field="*{platform}" class="form-control"
+											placeholder="Example: Instagram, WhatsApp, OLX">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Amount Lost 💸</label>
+										<input type="number" th:field="*{lostAmount}" class="form-control"
+											placeholder="Enter amount">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Title 📝</label>
+										<input type="text" th:field="*{title}" class="form-control"
+											placeholder="Short title of the scam">
+									</div>
+
+									<div class="col-md-8 mb-3">
+										<label class="form-label">Full Description 📄</label>
+										<textarea th:field="*{description}" class="form-control" rows="3"
+											placeholder="Describe what happened"></textarea>
+									</div>
+
+
+									<div class="col-md-4 mb-3">
+										<label class="form-label">Scammer Details 🕵‍♂</label>
+										<textarea th:field="*{scammer}" class="form-control" rows="3"
+											placeholder="Phone no, profile link, UPI ID, etc."></textarea>
+									</div>
+
+
+								</div>
+
+
+
+
+
+								<hr>
+
+								EVIDENCE UPLOAD
+								<h5 class="fw-bold text-secondary mb-3">📁 Evidence (Upload Images)</h5>
+
+								<div class="mb-3">
+									<label class="form-label">Upload Evidence Images 📷</label>
+									<input type="file" name="evidenceImages" class="form-control" multiple
+										accept="image/*">
+									<small class="text-muted">
+										You can upload multiple images like screenshots, chats, receipts, etc.
+									</small>
+								</div>
+
+								<div class="text-center mt-4">
+									<button type="submit" class="btn btn-danger px-5 py-2" style="border-radius: 10px;">
+										🚀 Submit Report
+									</button>
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+			var msg = "[[${msg}]]"
+			if (msg != "") {
+				alert(msg);
+			}
+		</script>
+	</main>
+</body>
+
+</html> -->
+
+
+
+
+
+<html lang="en" th:replace="~{base :: layout(~{::main})}">
+
+<body>
+	<main style="background-color: #020617; min-height: 100vh; padding-top: 40px; padding-bottom: 50px;">
+		<style>
+			/* --- Custom Palette Integration --- */
+			.report-container {
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+
+			.custom-card {
+				background-color: #0f172a; /* Card Color */
+				border: 1px solid rgba(34, 197, 94, 0.2);
+				border-radius: 20px;
+				overflow: hidden;
+				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+			}
+
+			.card-header-cyber {
+				background: linear-gradient(45deg, rgba(34, 197, 94, 0.1), rgba(15, 23, 42, 0.9));
+				border-bottom: 1px solid rgba(34, 197, 94, 0.3);
+				padding: 30px;
+			}
+
+			.card-header-cyber h3 {
+				color: #22c55e; /* Primary Green */
+				font-weight: 800;
+				letter-spacing: 1px;
+			}
+
+			/* --- Form Styling --- */
+			.section-title {
+				color: #22c55e;
+				font-weight: 700;
+				border-left: 4px solid #22c55e;
+				padding-left: 15px;
+				margin-top: 25px;
+				margin-bottom: 20px;
+				background: rgba(34, 197, 94, 0.05);
+				padding-top: 8px;
+				padding-bottom: 8px;
+			}
+
+			.form-label {
+				color: #e5e7eb; /* Main Text */
+				font-weight: 600;
+				font-size: 0.9rem;
+			}
+
+			.custom-input, .custom-select, .custom-textarea {
+				background-color: #020617; /* Background Color */
+				border: 1px solid #334155; /* Muted Border */
+				color: #e5e7eb !important;
+				border-radius: 10px;
+				padding: 12px;
+				transition: all 0.3s;
+			}
+
+			.custom-input:focus, .custom-select:focus, .custom-textarea:focus {
+				border-color: #22c55e;
+				box-shadow: 0 0 12px rgba(34, 197, 94, 0.2);
+				background-color: #020617;
+				outline: none;
+			}
+
+			.muted-text {
+				color: #94a3b8; /* Muted Color */
+				font-size: 0.85rem;
+			}
+
+			hr {
+				border-color: rgba(148, 163, 184, 0.1);
+				margin: 30px 0;
+			}
+
+			/* --- Button --- */
+			.btn-submit {
+				background-color: #22c55e;
+				color: #020617 !important;
+				font-weight: 800;
+				padding: 15px 50px;
+				border-radius: 12px;
+				border: none;
+				transition: 0.4s;
+				text-transform: uppercase;
+			}
+
+			.btn-submit:hover {
+				background-color: #4ade80;
+				transform: translateY(-3px);
+				box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4);
+			}
+
+			/* Custom File Upload */
+			input[type="file"]::file-selector-button {
+				background: #1e293b;
+				color: #22c55e;
+				border: 1px solid #22c55e;
+				padding: 5px 15px;
+				border-radius: 5px;
+				margin-right: 15px;
+				cursor: pointer;
+			}
+		</style>
+
+		<div class="container report-container">
+			<div class="row">
+				<div class="col-12">
+					<div class="custom-card">
+						<div class="card-header-cyber text-center">
+							<h3 class="mb-1"><i class="fas fa-shield-virus me-2"></i>REPORT A SCAM</h3>
+							<p class="muted-text mb-0">Fill out this secure form to start a digital investigation</p>
+						</div>
+
+						<div class="card-body p-4 p-md-5">
+							<form th:action="@{/ReportScam}" method="post" th:object="${dto}" enctype="multipart/form-data">
+
+								<h5 class="section-title"><i class="fas fa-user-circle me-2"></i>Your Details</h5>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Full Name</label>
+										<input type="text" th:field="*{name}" class="form-control custom-input" placeholder="Enter your full name" required>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Email Address</label>
+										<input type="email" th:field="*{email}" class="form-control custom-input" placeholder="email@example.com">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Mobile Number</label>
+										<input type="text" th:field="*{contactNo}" class="form-control custom-input" placeholder="+91 XXXXX XXXXX">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">WhatsApp Number</label>
+										<input type="text" th:field="*{whatsappNo}" class="form-control custom-input" placeholder="For investigation updates">
+									</div>
+
+									<div class="col-md-12 mb-3">
+										<label class="form-label">Postal Address</label>
+										<textarea th:field="*{address}" class="form-control custom-textarea" rows="2" placeholder="Full residential address"></textarea>
+									</div>
+								</div>
+
+								<hr>
+
+								<h5 class="section-title"><i class="fas fa-exclamation-triangle me-2"></i>Scam Incident Details</h5>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Category of Scam</label>
+										<select th:field="*{typeOfScam}" class="form-select custom-select">
+											<option value="">-- Select Category --</option>
+											<option value="Cyber Fraud">Cyber Fraud</option>
+											<option value="Identity Theft">Identity Theft</option>
+											<option value="Banking / UPI Fraud">Banking / UPI Fraud</option>
+											<option value="Social Media Scam">Social Media Scam</option>
+											<option value="Online Shopping Scam">Online Shopping Scam</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Platform Used</label>
+										<input type="text" th:field="*{platform}" class="form-control custom-input" placeholder="e.g. Instagram, Telegram, Facebook">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Financial Loss (₹)</label>
+										<input type="number" th:field="*{lostAmount}" class="form-control custom-input" placeholder="0.00">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Incident Title</label>
+										<input type="text" th:field="*{title}" class="form-control custom-input" placeholder="Brief subject of the scam">
+									</div>
+
+									<div class="col-md-7 mb-3">
+										<label class="form-label">Full Incident Description</label>
+										<textarea th:field="*{description}" class="form-control custom-textarea" rows="4" placeholder="Explain the flow of the scam in detail..."></textarea>
+									</div>
+
+									<div class="col-md-5 mb-3">
+										<label class="form-label">Scammer Information</label>
+										<textarea th:field="*{scammer}" class="form-control custom-textarea" rows="4" placeholder="UPI IDs, Phone numbers, Profile links, Bank accounts..."></textarea>
+									</div>
+								</div>
+
+								<hr>
+
+								<h5 class="section-title"><i class="fas fa-folder-open me-2"></i>Evidence Attachments</h5>
+								<div class="mb-3 p-3" style="background: rgba(255,255,255,0.02); border-radius: 10px;">
+									<label class="form-label">Attach Proof (Screenshots/Receipts)</label>
+									<input type="file" name="evidenceImages" class="form-control custom-input" multiple accept="image/*">
+									<p class="muted-text mt-2 mb-0">
+										<i class="fas fa-info-circle me-1"></i> Max 5 images. Support: JPG, PNG.
+									</p>
+								</div>
+
+								<div class="text-center mt-5">
+									<button type="submit" class="btn-submit shadow">
+										<i class="fas fa-paper-plane me-2"></i> SUBMIT SECURE REPORT
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script th:inline="javascript">
+			var msg = [[${msg}]];
+			if (msg && msg.trim() !== "") {
+				alert(msg);
+			}
+		</script>
+	</main>
+</body>
+
+</html>

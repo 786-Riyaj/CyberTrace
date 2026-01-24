@@ -1,0 +1,279 @@
+<!-- <html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card shadow">
+					<div class="card-header bg-primary">
+						<h4 class="text-center text-white m-0">Manage Investigator</h4>
+					</div>
+
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Sr. No.</th>
+										<th>Name</th>
+										<th>Profile Pic</th>
+										<th>Gender</th>
+										<th>Contact</th>
+										<th>Email</th>
+										<th>Govt. Id Proof</th>
+										<th>Address</th>
+										<th>Reg Date</th>
+										<th>Status</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="user, srno :${investigators}">
+										<td th:text="${srno.index+1}"></td>
+										<td th:text="${user.name}"></td>
+										<td><img alt="image not found" width="60px" height="60px"
+											class="rounded-circle"
+											th:src="@{'/Profile/' + ${user.profilePic}}"></td>
+										<td th:text="${user.gender}"></td>
+										<td th:text="${user.contactNo}"></td>
+										<td th:text="${user.email}"></td>
+										<td><a th:href="@{'/IdProof/' + ${user.govtIdProof}}"
+											th:text="${user.name} +' Govt. Id'" target="_blank"></a></td>
+										<td th:text="${user.address}"></td>
+										<td
+											th:text="${#temporals.format(user.regDate,'dd-MM-yyyy HH:mm')}"></td>
+										<td><a th:href="@{'UpdateStatus/'+ ${user.id}}"
+											class="btn  btn-sm"
+											th:classappend="${user.status.name() =='BLOCKED'}? 'btn-danger' : 'btn-success'"
+											th:text="${user.status.name()}">Status</a></td>
+
+										<td><a th:href="@{/Admin/AdminEdit/{id}(id=${user.id})}"
+											class="btn btn-warning btn-sm"> Edit Profile </a></td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html> -->
+
+
+
+
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main style="background-color: #020617; min-height: 100vh; padding: 30px;">
+		
+		<style>
+			:root {
+				--cyber-green: #22c55e;
+				--cyber-red: #ef4444;
+				--cyber-orange: #f59e0b;
+				--panel-bg: #0f172a;
+				--text-bright: #ffffff;
+				--text-dim: #cbd5e1;
+			}
+
+			.custom-panel {
+				background: var(--panel-bg);
+				border: 1px solid rgba(34, 197, 94, 0.2);
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+			}
+
+			.panel-header {
+				background: rgba(34, 197, 94, 0.1);
+				border-bottom: 2px solid var(--cyber-green);
+				padding: 20px;
+			}
+
+			.panel-header h4 {
+				color: var(--cyber-green);
+				font-weight: 800;
+				margin: 0;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+			}
+
+			/* --- Table Styling --- */
+			.custom-table {
+				color: var(--text-bright) !important;
+				margin-bottom: 0;
+			}
+
+			.custom-table thead th {
+				background: #1e293b;
+				color: var(--cyber-green);
+				padding: 15px;
+				font-weight: 800;
+				text-transform: uppercase;
+				font-size: 0.85rem;
+				border: none;
+				text-align: center;
+			}
+
+			.custom-table tbody td {
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+				padding: 12px;
+				vertical-align: middle;
+				text-align: center;
+				color: var(--text-dim);
+				font-size: 0.9rem;
+			}
+
+			.investigator-img {
+				width: 50px;
+				height: 50px;
+				object-fit: cover;
+				border: 2px solid var(--cyber-green);
+				box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+			}
+
+			/* --- Action Buttons --- */
+			.btn-status-success { background: var(--cyber-green); color: #000 !important; font-weight: 700; border: none; }
+			.btn-status-danger { background: var(--cyber-red); color: #fff !important; font-weight: 700; border: none; }
+			
+			.btn-edit-cyber {
+				background: transparent;
+				color: var(--cyber-orange) !important;
+				border: 1px solid var(--cyber-orange);
+				font-weight: 600;
+				transition: 0.3s;
+			}
+			.btn-edit-cyber:hover {
+				background: var(--cyber-orange);
+				color: #000 !important;
+			}
+
+			.id-proof-link {
+				color: #60a5fa;
+				text-decoration: none;
+				font-weight: 600;
+			}
+			.id-proof-link:hover { text-decoration: underline; color: #93c5fd; }
+
+			/* --- Fixed Width Toast Alert --- */
+			#custom-toast {
+				position: fixed;
+				top: 85px;
+				right: 20px;
+				background: #0f172a;
+				border-left: 5px solid var(--cyber-green);
+				color: white;
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+				display: none;
+				z-index: 10000;
+				width: 350px;           
+				max-width: 90vw;
+				word-wrap: break-word;  
+				animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			}
+			@keyframes slideIn { from { transform: translateX(120%); } to { transform: translateX(0); } }
+		</style>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="custom-panel shadow animate__animated animate__fadeIn">
+						<div class="panel-header text-center">
+							<h4><i class="fas fa-user-shield me-2"></i> Manage Investigator Squad</h4>
+						</div>
+
+						<div class="card-body p-0">
+							<div class="table-responsive">
+								<table class="table custom-table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Profile</th>
+											<th>Name</th>
+											<th>Gender</th>
+											<th>Contact Details</th>
+											<th>ID Proof</th>
+											<th>Address</th>
+											<th>Registered On</th>
+											<th>Status</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="user, srno :${investigators}">
+											<td class="fw-bold text-white" th:text="${srno.index+1}"></td>
+											<td>
+												<img alt="Profile" class="rounded-circle investigator-img"
+													 th:src="@{'/Profile/' + ${user.profilePic}}">
+											</td>
+											<td class="text-white fw-bold" th:text="${user.name}"></td>
+											<td th:text="${user.gender}"></td>
+											<td class="text-start">
+												<div class="small"><i class="fas fa-phone-alt me-1 text-success"></i> <span th:text="${user.contactNo}"></span></div>
+												<div class="small"><i class="fas fa-envelope me-1 text-info"></i> <span th:text="${user.email}"></span></div>
+											</td>
+											<td>
+												<a th:href="@{'/IdProof/' + ${user.govtIdProof}}" 
+												   class="id-proof-link small" target="_blank">
+													<i class="fas fa-file-pdf me-1"></i> View ID Proof
+												</a>
+											</td>
+											<td class="small" style="max-width: 150px;" th:text="${user.address}"></td>
+											<td class="small" th:text="${#temporals.format(user.regDate,'dd MMM yyyy')}"></td>
+											
+											<td>
+												<a th:href="@{'UpdateStatus/'+ ${user.id}}"
+												   class="btn btn-sm px-3"
+												   th:classappend="${user.status.name() =='BLOCKED'}? 'btn-status-danger' : 'btn-status-success'"
+												   th:text="${user.status.name()}"></a>
+											</td>
+
+											<td>
+												<a th:href="@{/Admin/AdminEdit/{id}(id=${user.id})}"
+												   class="btn btn-edit-cyber btn-sm px-3">
+													<i class="fas fa-edit me-1"></i> Edit
+												</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="custom-toast">
+			<div class="d-flex align-items-start">
+				<i class="fas fa-info-circle text-success fs-3 me-3 mt-1"></i>
+				<div style="flex: 1;">
+					<h6 class="m-0 fw-bold text-success">Management Alert</h6>
+					<div id="toast-text" class="small mt-1" style="color: white; font-weight: 600;"></div>
+				</div>
+			</div>
+		</div>
+
+		<script th:inline="javascript">
+			var msg = /*[[${msg}]]*/ "";
+			if (msg && msg.trim() !== "" && msg !== "null") {
+				var toast = document.getElementById('custom-toast');
+				var toastText = document.getElementById('toast-text');
+				
+				toastText.innerText = msg;
+				toast.style.display = 'block';
+
+				setTimeout(function() {
+					toast.style.opacity = '0';
+					toast.style.transition = '0.8s';
+					setTimeout(function() { toast.style.display = 'none'; }, 800);
+				}, 4500);
+			}
+		</script>
+	</main>
+</body>
+</html>

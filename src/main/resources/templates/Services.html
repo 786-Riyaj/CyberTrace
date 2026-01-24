@@ -1,0 +1,417 @@
+ <!-- <html th:replace="~{base::layout(~{::main})}">
+
+<body>
+	<main>
+		Hero Section
+		<section class="services-hero d-flex align-items-center">
+			<div class="container text-center text-white">
+				<h1 class="display-5 fw-bold">Our Services</h1>
+				<p class="lead mt-3">Advanced tools to track, detect, and prevent scam activities.</p>
+			</div>
+		</section>
+
+		Services Cards
+		<section class="py-5">
+			<div class="container">
+				<h2 class="section-title text-center mb-5">What We Provide</h2>
+
+				<div class="row">
+
+					Service 1
+					<div class="col-md-4 mb-4">
+						<div class="service-card p-4 shadow rounded text-center">
+							<i class="fas fa-file-alt service-icon mb-3"></i>
+							<h4>Case Management</h4>
+							<p>Track and manage scam cases with detailed reporting,
+								secure storage, and workflow tracking.</p>
+						</div>
+					</div>
+
+					Service 2
+					<div class="col-md-4 mb-4">
+						<div class="service-card p-4 shadow rounded text-center">
+							<i class="fas fa-search service-icon mb-3"></i>
+							<h4>Scam Detection</h4>
+							<p>AI-powered detection engine helps identify suspicious
+								activities and fraud patterns early.</p>
+						</div>
+					</div>
+
+					Service 3
+					<div class="col-md-4 mb-4">
+						<div class="service-card p-4 shadow rounded text-center">
+							<i class="fas fa-chart-line service-icon mb-3"></i>
+							<h4>Analytics & Reports</h4>
+							<p>View real-time insights, charts, scam trends and
+								generate automated reports for authorities.</p>
+						</div>
+					</div>
+
+					Service 4
+					<div class="col-md-4 mb-4">
+						<div class="service-card p-4 shadow rounded text-center">
+							<i class="fas fa-bell service-icon mb-3"></i>
+							<h4>Real-Time Alerts</h4>
+							<p>Receive instant notifications when new scam cases
+								or suspicious activities occur in your region.</p>
+						</div>
+					</div>
+
+					Service 5
+					<div class="col-md-4 mb-4">
+						<div class="service-card p-4 shadow rounded text-center">
+							<i class="fas fa-users service-icon mb-3"></i>
+							<h4>Community Collaboration</h4>
+							<p>Communicate and collaborate with partner agencies,
+								investigators, and victims on one platform.</p>
+						</div>
+					</div>
+
+					Service 6
+					<div class="col-md-4 mb-4">
+						<div class="service-card p-4 shadow rounded text-center">
+							<i class="fas fa-lock service-icon mb-3"></i>
+							<h4>Data Security</h4>
+							<p>Bank-level encryption with role-based access control
+								keeps all case data safe and protected.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		Special Features Section
+		<section class="py-5 bg-light">
+			<div class="container">
+				<h2 class="section-title text-center mb-5">Why Choose Us?</h2>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="p-4 bg-white shadow rounded h-100">
+							<h4><i class="fas fa-shield-alt text-primary me-2"></i>High-Level Security</h4>
+							<p>
+								We prioritize data protection using advanced encryption,
+								two-factor authentication, and secure cloud storage.
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="p-4 bg-white shadow rounded h-100">
+							<h4><i class="fas fa-headset text-primary me-2"></i>24/7 Support</h4>
+							<p>
+								Our support team is available round-the-clock to help with
+								case updates, reporting issues, and technical queries.
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 mt-4">
+						<div class="p-4 bg-white shadow rounded h-100">
+							<h4><i class="fas fa-sync-alt text-primary me-2"></i>Seamless Integration</h4>
+							<p>
+								Easily integrates with law enforcement systems, financial institutions,
+								and internal databases for unified workflows.
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 mt-4">
+						<div class="p-4 bg-white shadow rounded h-100">
+							<h4><i class="fas fa-globe text-primary me-2"></i>Nationwide Coverage</h4>
+							<p>
+								Works across cities and states, connecting agencies and enabling
+								cross-jurisdiction scam investigation.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		CTA
+		<section class="py-5 text-center">
+			<h3>Need These Services?</h3>
+			<p>Get started with fraud prevention today.</p>
+			<a href="/contact" class="btn btn-primary btn-lg">
+				<i class="fas fa-phone me-2"></i> Contact Us
+			</a>
+		</section>
+
+	</main>
+	</body>
+	</html>
+	 -->
+	 
+
+ <html th:replace="~{base::layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<main>
+		<style>
+:root {
+	--primary-color: #22c55e;
+	--dark-bg: #020617;
+	--card-bg: #0f172a;
+	--text-main: #ffffff;
+	--text-muted: #cbd5e1;
+}
+
+main {
+	background-color: var(--dark-bg);
+	color: var(--text-main);
+	font-family: 'Inter', sans-serif;
+}
+/* --- Header & Footer Sync --- */
+header, .navbar, footer, .contact-footer-bar {
+	background-color: #020617 !important;
+	border-top: 1px solid rgba(34, 197, 94, 0.3) !important;
+	border-bottom: 1px solid rgba(34, 197, 94, 0.3) !important;
+}
+
+/* --- Hero Section --- */
+.hero-wrap {
+	padding: 120px 0 60px;
+	background: radial-gradient(circle at top center, rgba(34, 197, 94, 0.08),
+		transparent);
+	text-align: center;
+}
+
+.hero-title {
+	font-size: 3.5rem;
+	font-weight: 800;
+	color: #ffffff;
+}
+
+.hero-title span {
+	color: var(--primary-color);
+	text-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+}
+
+/* --- Service Cards --- */
+.cyber-service-card {
+	background: var(--card-bg);
+	border: 1px solid rgba(34, 197, 94, 0.15);
+	border-radius: 20px;
+	padding: 40px 30px;
+	height: 100%;
+	transition: all 0.4s ease;
+	text-align: center;
+}
+
+.cyber-service-card:hover {
+	border-color: var(--primary-color);
+	transform: translateY(-10px);
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.service-icon {
+	font-size: 3rem;
+	color: var(--primary-color);
+	margin-bottom: 25px;
+	display: inline-block;
+	filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.2));
+}
+
+.cyber-service-card h4 {
+	font-weight: 700;
+	margin-bottom: 15px;
+	color: #ffffff;
+}
+
+.cyber-service-card p {
+	color: var(--text-muted);
+	font-size: 0.95rem;
+	line-height: 1.7;
+}
+
+/* --- Feature Section --- */
+.feature-box {
+	background: rgba(15, 23, 42, 0.6);
+	border-left: 4px solid var(--primary-color);
+	border-radius: 12px;
+	padding: 25px;
+	height: 100%;
+	transition: 0.3s;
+}
+
+.feature-box:hover {
+	background: rgba(34, 197, 94, 0.05);
+}
+
+.feature-box h5 {
+	color: var(--primary-color);
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+}
+
+/* --- CTA Section --- */
+.cta-section {
+	padding: 80px 0;
+	background: linear-gradient(to bottom, transparent, rgba(34, 197, 94, 0.05));
+}
+
+.btn-cyber-lg {
+	background: var(--primary-color);
+	color: #020617;
+	font-weight: 800;
+	padding: 15px 40px;
+	border-radius: 12px;
+	text-transform: uppercase;
+	text-decoration: none;
+	display: inline-block;
+	transition: 0.3s;
+	border: none;
+}
+
+.btn-cyber-lg:hover {
+	background: #4ade80;
+	box-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
+	transform: scale(1.05);
+}
+</style>
+
+		<section class="hero-wrap">
+			<div class="container">
+				<h1 class="hero-title">
+					Our <span>Core Services</span>
+				</h1>
+				<p class="lead mt-3 mx-auto"
+					style="color: var(--text-muted); max-width: 750px;">We provide
+					advanced digital forensic tools and AI-based intelligence to help
+					identify, track, and prevent complex scam activities. Our services
+					support accurate investigation, faster response, and effective
+					cyber crime control at both individual and organizational levels.</p>
+			</div>
+		</section>
+
+		<section class="py-5">
+			<div class="container">
+				<div class="row g-4">
+					<div class="col-md-4">
+						<div class="cyber-service-card">
+							<i class="fas fa-file-shield service-icon"></i>
+							<h4>Case Management</h4>
+							<p>End-to-end tracking of scam cases with encrypted
+								reporting, secure evidence storage, and automated workflow
+								tracking for investigators.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="cyber-service-card">
+							<i class="fas fa-microchip service-icon"></i>
+							<h4>Scam Detection</h4>
+							<p>Leveraging AI-powered engines to identify suspicious
+								financial activities and fraudulent digital patterns before they
+								escalate.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="cyber-service-card">
+							<i class="fas fa-chart-pie service-icon"></i>
+							<h4>Forensic Analytics</h4>
+							<p>Real-time data visualization and trend analysis to help
+								authorities understand emerging cyber-attack vectors and fraud
+								hotspots.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="cyber-service-card">
+							<i class="fas fa-satellite-dish service-icon"></i>
+							<h4>Real-Time Alerts</h4>
+							<p>Instant mission-critical notifications sent to your
+								dashboard when new suspicious activities are detected in your
+								jurisdiction.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="cyber-service-card">
+							<i class="fas fa-network-wired service-icon"></i>
+							<h4>Agency Collaboration</h4>
+							<p>A unified secure portal for cross-agency communication,
+								allowing investigators and victims to share intelligence
+								seamlessly.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="cyber-service-card">
+							<i class="fas fa-user-secret service-icon"></i>
+							<h4>Data Sovereignty</h4>
+							<p>Bank-level AES-256 encryption combined with role-based
+								access control to ensure that sensitive case files remain
+								classified.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="py-5" style="background: rgba(15, 23, 42, 0.4);">
+			<div class="container">
+				<h2 class="text-center fw-bold mb-5">
+					Why <span>CyberTrace</span>?
+				</h2>
+				<div class="row g-4">
+					<div class="col-md-6">
+						<div class="feature-box">
+							<h5>
+								<i class="fas fa-shield-halved me-2"></i>Military Grade Security
+							</h5>
+							<p class="small mb-0">Multi-factor authentication and
+								zero-trust architecture to protect national-level intelligence
+								data.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="feature-box">
+							<h5>
+								<i class="fas fa-headset me-2"></i>24/7 Support
+							</h5>
+							<p class="small mb-0">Our rapid response team is available
+								24/7 to assist in high-stakes digital forensic investigations.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="feature-box">
+							<h5>
+								<i class="fas fa-bolt me-2"></i>Ultra-Fast Integration
+							</h5>
+							<p class="small mb-0">Plug-and-play API access for law
+								enforcement databases and financial institution record systems.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="feature-box">
+							<h5>
+								<i class="fas fa-earth-americas me-2"></i>Cross-Border Intel
+							</h5>
+							<p class="small mb-0">Shared global scam database to identify
+								international threat actors operating across jurisdictions.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="cta-section text-center">
+			<div class="container">
+				<h3 class="fw-bold mb-3">Ready to Secure Your Digital
+					Perimeter?</h3>
+				<p class="mb-5 ">Join the network of protected
+					agencies and organizations today.</p>
+				<a href="ContactUs" class="btn-cyber-lg"> <i
+					class="fas fa-bolt me-2"></i> Contact Intelligence Unit
+				</a>
+			</div>
+		</section>
+
+	</main>
+</body>
+</html>

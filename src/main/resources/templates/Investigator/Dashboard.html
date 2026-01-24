@@ -1,0 +1,321 @@
+<!--  <html th:replace="~{Investigator/Investigatorbase::layout(~{::main})}">
+<body>
+	<main>
+
+		Custom CSS
+		<style>
+body {
+	background-color: #f4f6f9;
+}
+
+.dashboard-card {
+	border-radius: 12px;
+}
+
+.stat-card {
+	transition: 0.3s;
+}
+
+.stat-card:hover {
+	transform: translateY(-5px);
+}
+
+.profile-img {
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	border: 3px solid #0d6efd;
+}
+
+.badge-status {
+	font-size: 0.85rem;
+}
+</style>
+		</head>
+
+		<div class="container-fluid p-4">
+
+			Header
+			<div class="d-flex justify-content-between align-items-center mb-4">
+				<h3 class="fw-bold">🕵️ Investigator Dashboard</h3>
+				<button class="btn btn-danger">Logout</button>
+
+				<a href="Logout" class="btn btn-danger"> <span>Logout</span></a>
+			</div>
+
+			Profile Section
+			<div class="card dashboard-card mb-4 shadow-sm">
+				<div class="card-body d-flex align-items-center">
+
+					<img src="/Profile/1766860559064_th (10).jpeg" alt="user-image"
+						class="user-avatar rounded-circle mx-2"
+						style="height: 70px; width: 70px;">
+					<div>
+						<h5 class="mb-1" th:text="${investigator.name}">Name</h5>
+						<p class="mb-0 text-muted" th:text="${investigator.role}">Role</p>
+						<small>Email: <span th:text="${investigator.email}"></span></small>
+
+
+					</div>
+				</div>
+			</div>
+
+			Statistics
+			<div class="row mb-4">
+				<div class="col-md-3">
+					<div class="card border border-primary text-center stat-card">
+						<i
+							class="ti ti-file-text p-2 bg-primary mx-auto fs-3 text-white rounded-circle m-2"
+							style="width: 50px; height: 50px; line-height: 30px;"></i>
+						<h4 class="py-2" th:text="${totalCases}">0</h4>
+						<div class="card-footer p-2 bg-primary ">
+							<h5 class="m-0 text-white">Total Cases</h5>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="card border border-warning text-center stat-card">
+						<i
+							class="ti ti-activity p-2 bg-warning mx-auto fs-3 text-white rounded-circle m-2"
+							style="width: 50px; height: 50px; line-height: 30px;"></i>
+						<h4 class="py-2" th:text="${ongoingCases}">0</h4>
+						<div class="card-footer p-2 bg-warning ">
+							<h5 class="m-0 text-white">Ongoing</h5>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-3">
+					<div class="card border border-danger text-center stat-card">
+						<i
+							class="ti ti-alert-circle p-2 bg-danger mx-auto fs-3 text-white rounded-circle m-2"
+							style="width: 50px; height: 50px; line-height: 30px;"></i>
+						<h4 class="py-2" th:text="${pendingCases}">0</h4>
+						<div class="card-footer p-2 bg-danger ">
+							<h5 class="m-0 text-white">Pendings</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card border border-success text-center stat-card">
+						<i
+							class="ti ti-circle-check p-2 bg-success mx-auto fs-3 text-white rounded-circle m-2"
+							style="width: 50px; height: 50px; line-height: 30px;"></i>
+						<h4 class="py-2" th:text="${completedCases}">0</h4>
+						<div class="card-footer p-2 bg-success ">
+							<h5 class="m-0 text-white">Completed</h5>
+						</div>
+					</div>
+				</div>
+			</div>			
+			Notifications
+			<div class="card dashboard-card shadow-sm ">
+				<div class="card-header  bg-primary text-center">
+					<h4 class="m-0 text-white">Notifications</h4>
+				</div>
+				<div class="card-body">
+					<ul class="list-group">
+						<li class="list-group-item">🔔 New case assigned: CASE-105</li>
+						<li class="list-group-item">⏰ Case CASE-101 deadline
+							approaching</li>
+						<li class="list-group-item">📩 Message from Admin</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html> 
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html th:replace="~{Investigator/Investigatorbase::layout(~{::main})}">
+<head>
+    <title>Investigator Command Center</title>
+</head>
+<body>
+    <main style="background-color: #020617; min-height: 100vh; padding: 25px; color: #f8fafc;">
+        
+        <style>
+            :root {
+                --cyber-green: #22c55e;
+                --cyber-blue: #3b82f6;
+                --cyber-orange: #f59e0b;
+                --cyber-red: #ef4444;
+                --panel-bg: #0f172a;
+                --border-light: rgba(255, 255, 255, 0.1);
+                --text-bright: #ffffff;
+                --text-sub: #cbd5e1;
+            }
+
+            /* --- Header Panel --- */
+            .header-panel {
+                background: #0f172a;
+                border: 1px solid var(--cyber-green);
+                border-left: 6px solid var(--cyber-green);
+                border-radius: 12px;
+                padding: 25px;
+                margin-bottom: 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            }
+
+            /* --- Stat Card with Icons --- */
+            .stat-panel-adv {
+                background: #0f172a;
+                border-radius: 15px;
+                padding: 25px;
+                text-align: center;
+                transition: 0.3s ease;
+                border: 1px solid var(--border-light);
+                height: 100%;
+            }
+
+            .stat-panel-adv:hover {
+                transform: translateY(-10px);
+            }
+
+            /* Icon Styling */
+            .stat-icon {
+                font-size: 2.2rem;
+                margin-bottom: 12px;
+                display: inline-block;
+            }
+
+            /* Color Logic & Borders */
+            .stat-blue { border-bottom: 4px solid var(--cyber-blue); }
+            .stat-blue .stat-icon { color: var(--cyber-blue); }
+            .stat-blue:hover { border-color: var(--cyber-blue); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15); }
+            
+            .stat-orange { border-bottom: 4px solid var(--cyber-orange); }
+            .stat-orange .stat-icon { color: var(--cyber-orange); }
+            .stat-orange:hover { border-color: var(--cyber-orange); box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15); }
+            
+            .stat-red { border-bottom: 4px solid var(--cyber-red); }
+            .stat-red .stat-icon { color: var(--cyber-red); }
+            .stat-red:hover { border-color: var(--cyber-red); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.15); }
+            
+            .stat-green { border-bottom: 4px solid var(--cyber-green); }
+            .stat-green .stat-icon { color: var(--cyber-green); }
+            .stat-green:hover { border-color: var(--cyber-green); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15); }
+
+            .stat-label-adv {
+                color: var(--text-sub);
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .stat-number-adv {
+                font-size: 2.2rem;
+                font-weight: 800;
+                color: #ffffff;
+                display: block;
+            }
+
+            /* Notification Feed */
+            .notif-item-adv {
+                background: rgba(255,255,255,0.03);
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 10px;
+                border: 1px solid rgba(255,255,255,0.05);
+                border-left: 4px solid var(--cyber-green);
+                transition: 0.3s;
+            }
+
+            .btn-logout-adv {
+                border: 1px solid var(--cyber-red);
+                color: var(--cyber-red);
+                padding: 8px 20px;
+                border-radius: 6px;
+                font-weight: 700;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+            .btn-logout-adv:hover { background: var(--cyber-red); color: white; }
+        </style>
+
+        <div class="container-fluid">
+            <div class="header-panel ">
+                <div class="row align-items-center">
+                    <div class="col-sm-8">
+                        <h2 class="fw-bold mb-1" style="color: var(--text-bright);">Investigator <span style="color: var(--cyber-green)">Console</span></h2>
+                        <p class="m-0" style="color: var(--text-sub);">Welcome back, <strong class="text-white" th:text="${investigator.name}">Name</strong>. Analysis tools active.</p>
+                    </div>
+                    <div class="col-sm-4 text-sm-end">
+                        <div class="d-inline-block text-end me-3 align-middle">
+                            <div class="fw-bold" style="color: var(--text-bright);" th:text="${investigator.email}">email@example.com</div>
+                            <span class="badge bg-success small" th:text="${investigator.role}">Role</span>
+                        </div>
+                        <img th:src="@{${investigator.profilePic != null ? '/Profile/' + investigator.profilePic : '/assets/images/user/avatar-2.jpg'}}" 
+                             class="rounded-circle border border-2 border-success shadow" style="width:65px; height:65px; object-fit: cover;">
+                       <!--  <a href="Logout" class="btn-logout-adv ms-3">Logout</a> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="stat-panel-adv stat-blue">
+                        <i class="ti ti-briefcase stat-icon"></i>
+                        <span class="stat-label-adv">Total Cases</span>
+                        <span class="stat-number-adv" th:text="${totalCases}">0</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-panel-adv stat-orange">
+                        <i class="ti ti-history stat-icon"></i>
+                        <span class="stat-label-adv">Ongoing Cases</span>
+                        <span class="stat-number-adv" th:text="${ongoingCases}">0</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-panel-adv stat-red">
+                        <i class="ti ti-alert-triangle stat-icon"></i>
+                        <span class="stat-label-adv">Pending Action</span>
+                        <span class="stat-number-adv" th:text="${pendingCases}">0</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-panel-adv stat-green">
+                        <i class="ti ti-circle-check stat-icon"></i>
+                        <span class="stat-label-adv">Completed</span>
+                        <span class="stat-number-adv" th:text="${completedCases}">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-panel p-4" style="border-left-color: var(--cyber-blue);">
+                <h5 class="fw-bold mb-4" style="color: var(--text-bright);"><i class="ti ti-antenna-bars-5 me-2 text-primary"></i> Intelligence Feed</h5>
+                <div class="notif-item-adv">🔔 New case assigned: <b>CASE-105</b></div>
+                <div class="notif-item-adv" style="border-left-color: var(--cyber-orange);">⏰ Case <b>CASE-101</b> deadline approaching</div>
+                <div class="notif-item-adv" style="border-left-color: var(--cyber-blue);">📩 Message from Admin regarding Evidence Review</div>
+            </div>
+        </div>
+
+        <script>
+            var msg = "[[${msg}]]";
+            if (msg !== "" && msg !== "null") alert(msg);
+        </script>
+    </main>
+</body>
+</html>

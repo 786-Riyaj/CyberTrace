@@ -1,0 +1,258 @@
+<!-- <html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-10 mx-auto">
+				<div class="card shadow">
+					<div class="card-header bg-primary">
+						<h4 class="text-center text-white m-0">Add Investigator</h4>
+					</div>
+					<div class="card-body">
+						<form th:object="${dto}" action="Add-Investigator" method="post" enctype="multipart/form-data">
+							<div class="row px-3">
+								<div class="col-md-6 mt-3">
+									<label>Enter Name</label>
+									<input th:field="${dto.name}" type="text" class="form-control" placeholder="Name..." required>
+								</div>
+
+								<div class="col-md-6 mt-3">
+									<label>Select Gender</label>
+									<select th:field="${dto.gender}" class="form-control" required>
+										<option value="">--Select Gender--</option>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+										<option value="Other">Other</option>
+									</select>
+								</div>
+								
+								<div class="col-md-6 mt-3">
+									<label>Enter ContactNo</label>
+									<input th:field="${dto.contactNo}" type="number" pattern="\d{10}" class="form-control" placeholder="ContactNo..." required>
+								</div>
+								
+								<div class="col-md-6 mt-3">
+									<label>Enter Email</label>
+									<input th:field="${dto.email}" type="email" class="form-control" placeholder="Email..." required>
+								</div>
+								
+								<div class="col-md-6 mt-3">
+									<label>Enter Password</label>
+									<input th:field="${dto.password}" type="password" class="form-control" placeholder="Password..." required>
+								</div>
+								
+								<div class="col-md-6 mt-3">
+									<label>Upload Government Id Proof</label>
+									<input th:field="${dto.govtIdProof}" type="file" class="form-control" required>
+									<small>You can upload your AadharCard/PanCard/VoterId/DrivingLicense</small>
+								</div>
+								
+								<div class="col-md-6 mt-3">
+									<label>Investigator Image<small>(Passport Size photo upto 3MB)</small></label>
+									<input th:field="${dto.profilePic}" type="file" class="form-control pb-4 pt-3" required>
+								</div>
+								
+								<div class="col-md-6 mt-3">
+									<label>Enter Address</label>
+									<textarea th:field="${dto.address}" rows="2" class="form-control" placeholder="Enter Complaint Address" required ></textarea>
+								</div>
+								
+								<div class="col-md-12 mt-4 text-center">
+									<button type="submit" class="btn btn-primary">Add Investigator</button>
+								</div>
+								
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var msg = "[[${msg}]]";
+			if(msg!="")
+			{
+				alert(msg);
+			}
+		</script>
+	</main>
+</body>
+
+</html> -->
+
+
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main style="background-color: #020617; min-height: 100vh; padding: 30px;">
+		
+		<style>
+			/* --- High Visibility Admin Form Design --- */
+			:root {
+				--cyber-green: #22c55e;
+				--panel-bg: #0f172a;
+				--input-bg: #020617;
+				--text-main: #f8fafc;
+				--text-sub: #cbd5e1;
+			}
+
+			.form-panel {
+				background: var(--panel-bg);
+				border: 1px solid rgba(34, 197, 94, 0.2);
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+			}
+
+			.form-header {
+				background: rgba(34, 197, 94, 0.05);
+				border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+				padding: 25px;
+				text-align: center;
+			}
+
+			.form-header h4 {
+				color: var(--cyber-green);
+				font-weight: 800;
+				margin: 0;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+			}
+
+			/* --- Input Styling --- */
+			.form-group-label {
+				color: var(--text-sub);
+				font-weight: 600;
+				font-size: 0.9rem;
+				margin-bottom: 8px;
+				display: block;
+			}
+
+			.cyber-input {
+				background: var(--input-bg) !important;
+				border: 1px solid #334155 !important;
+				color: var(--text-main) !important;
+				border-radius: 8px;
+				padding: 12px;
+				transition: all 0.3s;
+			}
+
+			.cyber-input:focus {
+				border-color: var(--cyber-green) !important;
+				box-shadow: 0 0 12px rgba(34, 197, 94, 0.2) !important;
+				outline: none;
+			}
+
+			.cyber-input::placeholder {
+				color: #4b5563;
+			}
+
+			/* --- Button --- */
+			.btn-add {
+				background: var(--cyber-green);
+				color: #020617 !important;
+				font-weight: 800;
+				padding: 14px 40px;
+				border-radius: 8px;
+				border: none;
+				text-transform: uppercase;
+				transition: 0.3s;
+				width: 100%;
+				max-width: 300px;
+			}
+
+			.btn-add:hover {
+				background: #4ade80;
+				transform: translateY(-2px);
+				box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+			}
+
+			.help-text {
+				color: #94a3b8;
+				font-size: 0.75rem;
+				margin-top: 5px;
+				display: block;
+			}
+		</style>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 mx-auto">
+					<div class="form-panel animate__animated animate__fadeInUp">
+						
+						<div class="form-header">
+							<h4><i class="fas fa-user-plus me-2"></i> Register New Investigator</h4>
+						</div>
+
+						<div class="card-body p-4 p-md-5">
+							<form th:object="${dto}" action="Add-Investigator" method="post" enctype="multipart/form-data">
+								<div class="row g-4">
+									
+									<div class="col-md-6">
+										<label class="form-group-label">Full Name</label>
+										<input th:field="${dto.name}" type="text" class="form-control cyber-input" placeholder="Enter investigator name" required>
+									</div>
+
+									<div class="col-md-6">
+										<label class="form-group-label">Gender</label>
+										<select th:field="${dto.gender}" class="form-select cyber-input" required>
+											<option value="">-- Select Gender --</option>
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+									
+									<div class="col-md-6">
+										<label class="form-group-label">Contact Number</label>
+										<input th:field="${dto.contactNo}" type="number" class="form-control cyber-input" placeholder="10-digit mobile number" required>
+									</div>
+									
+									<div class="col-md-6">
+										<label class="form-group-label">Email Address (Login ID)</label>
+										<input th:field="${dto.email}" type="email" class="form-control cyber-input" placeholder="email@cybertrace.gov" required>
+									</div>
+									
+									<div class="col-md-6">
+										<label class="form-group-label">Secure Password</label>
+										<input th:field="${dto.password}" type="password" class="form-control cyber-input" placeholder="Create complex password" required>
+									</div>
+
+									<div class="col-md-6">
+										<label class="form-group-label">Address / Jurisdiction</label>
+										<input th:field="${dto.address}" type="text" class="form-control cyber-input" placeholder="City, State, Station" required>
+									</div>
+									
+									<div class="col-md-6">
+										<label class="form-group-label">Government ID Proof</label>
+										<input th:field="${dto.govtIdProof}" type="file" class="form-control cyber-input" required>
+										<span class="help-text">Aadhar, PAN, or Service ID Card</span>
+									</div>
+									
+									<div class="col-md-6">
+										<label class="form-group-label">Profile Photo</label>
+										<input th:field="${dto.profilePic}" type="file" class="form-control cyber-input" required>
+										<span class="help-text">Passport size photo (Max 3MB)</span>
+									</div>
+									
+									<div class="col-md-12 mt-5 text-center">
+										<button type="submit" class="btn-add">
+											<i class="fas fa-check-circle me-2"></i> Confirm Enrollment
+										</button>
+									</div>
+									
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script th:inline="javascript">
+			var msg = [[${msg}]];
+			if (msg && msg.trim() !== "") {
+				alert(msg);
+			}
+		</script>
+	</main>
+</body>
+</html>

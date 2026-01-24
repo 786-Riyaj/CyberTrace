@@ -1,0 +1,260 @@
+<!-- <html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main>
+		
+		<div class="row">
+    <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="card shadow-lg border-0 ">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-user-edit me-2"></i>Edit Investigator Profile
+                </h5>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/Admin/UpdateProfile}" method="post" th:object="${user}">
+                    Hidden ID
+                    <input type="hidden" th:field="*{id}" />
+
+                    Full Name
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter full name" required>
+                    </div>
+
+                    Gender
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <select th:field="*{gender}" class="form-select" required>
+                            <option value="">-- Select Gender --</option>
+                            <option value="Male" th:selected="*{gender == 'Male'}">Male</option>
+                            <option value="Female" th:selected="*{gender == 'Female'}">Female</option>
+                            <option value="Other" th:selected="*{gender == 'Other'}">Other</option>
+                        </select>
+                    </div>
+
+                    Contact Number
+                    <div class="mb-3">
+                        <label class="form-label">Contact Number</label>
+                        <input type="tel" th:field="*{contactNo}" class="form-control" placeholder="Enter contact number" required>
+                    </div>
+
+                    Email
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" th:field="*{email}" class="form-control" placeholder="Enter email" required>
+                    </div>
+
+                    Address
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <textarea th:field="*{address}" class="form-control" rows="3" placeholder="Enter full address"></textarea>
+                    </div>
+
+                    Buttons
+                    <div class="d-flex justify-content-end">
+                        <a href="javascript:history.back()" class="btn btn-secondary me-2">
+                           Cancel
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                           Update Profile
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+	</main>
+</body>
+</html> -->
+
+
+
+
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main style="background-color: #020617; min-height: 100vh; padding: 40px 15px;">
+		
+		<style>
+			:root {
+				--cyber-primary: #22c55e;
+				--cyber-danger: #ef4444;
+				--page-bg: #020617;
+				--card-bg: #0f172a;
+				--text-main: #e5e7eb;
+				--text-muted: #94a3b8;
+				--input-bg: #0a0f1d;
+			}
+
+			.custom-panel {
+				background: var(--card-bg);
+				border: 1px solid rgba(34, 197, 94, 0.2);
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+			}
+
+			.panel-header {
+				background: rgba(34, 197, 94, 0.05);
+				border-bottom: 2px solid var(--cyber-primary);
+				padding: 25px;
+				text-align: center;
+			}
+
+			.panel-header h5 {
+				color: var(--cyber-primary);
+				font-weight: 800;
+				margin: 0;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+			}
+
+			/* --- Form Controls --- */
+			.form-label-cyber {
+				color: var(--text-main);
+				font-weight: 600;
+				margin-bottom: 8px;
+				font-size: 0.9rem;
+			}
+
+			.cyber-input {
+				background: var(--input-bg) !important;
+				border: 1px solid #1e293b !important;
+				color: var(--text-main) !important;
+				border-radius: 8px;
+				padding: 12px 15px;
+				transition: all 0.3s ease;
+			}
+
+			.cyber-input:focus {
+				border-color: var(--cyber-primary) !important;
+				box-shadow: 0 0 12px rgba(34, 197, 94, 0.2) !important;
+				outline: none;
+			}
+
+			.cyber-input::placeholder {
+				color: var(--text-muted);
+			}
+
+			/* Custom Select Arrow */
+			.form-select.cyber-input {
+				background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2322c55e' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+			}
+
+			/* --- Buttons --- */
+			.btn-update {
+				background: var(--cyber-primary);
+				color: #020617 !important;
+				font-weight: 800;
+				border: none;
+				padding: 12px 30px;
+				border-radius: 8px;
+				text-transform: uppercase;
+				transition: 0.3s;
+			}
+
+			.btn-update:hover {
+				background: #4ade80;
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
+			}
+
+			.btn-cancel {
+				background: transparent;
+				color: var(--text-muted) !important;
+				border: 1px solid #1e293b;
+				font-weight: 600;
+				padding: 12px 30px;
+				border-radius: 8px;
+				text-decoration: none;
+				transition: 0.3s;
+			}
+
+			.btn-cancel:hover {
+				border-color: var(--cyber-danger);
+				color: var(--cyber-danger) !important;
+				background: rgba(239, 68, 68, 0.05);
+			}
+
+			/* Text visibility fix for select options */
+			option {
+				background-color: var(--card-bg);
+				color: var(--text-main);
+			}
+		</style>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-9 mx-auto">
+					<div class="custom-panel animate__animated animate__fadeInUp">
+						
+						<div class="panel-header">
+							<h5>
+								<i class="fas fa-user-shield me-2"></i> Edit Investigator Profile
+							</h5>
+						</div>
+
+						<div class="card-body p-4 p-md-5">
+							<!-- <form th:action="@{/Admin/UpdateProfile}" method="post" th:object="${user}"> -->
+								<form th:action="@{/Admin/UpdateProfile}" method="post" th:object="${user}">
+								<input type="hidden" th:field="*{id}" />
+
+								<div class="row">
+									<div class="col-md-12 mb-4">
+										<label class="form-label-cyber">Full Name</label>
+										<input type="text" th:field="*{name}" class="form-control cyber-input" placeholder="Enter full name" required>
+									</div>
+
+									<div class="col-md-12 mb-4">
+										<label class="form-label-cyber">Gender Identity</label>
+										<select th:field="*{gender}" class="form-select cyber-input" required>
+											<option value="">-- Select Gender --</option>
+											<option value="Male" th:selected="*{gender == 'Male'}">Male</option>
+											<option value="Female" th:selected="*{gender == 'Female'}">Female</option>
+											<option value="Other" th:selected="*{gender == 'Other'}">Other</option>
+										</select>
+									</div>
+
+									<div class="col-md-12 mb-4">
+										<label class="form-label-cyber">Secure Contact Number</label>
+										<input type="tel" th:field="*{contactNo}" class="form-control cyber-input" placeholder="Enter contact number" required>
+									</div>
+
+									<div class="col-md-12 mb-4">
+										<label class="form-label-cyber">Official Email Address</label>
+										<input type="email" th:field="*{email}" class="form-control cyber-input" placeholder="Enter email" required>
+									</div>
+
+									<div class="col-md-12 mb-4">
+										<label class="form-label-cyber">Residential Address</label>
+										<textarea th:field="*{address}" class="form-control cyber-input" rows="3" placeholder="Enter full address"></textarea>
+									</div>
+								</div>
+
+								<div class="d-flex justify-content-between align-items-center mt-4">
+									<a href="javascript:history.back()" class="btn-cancel">
+									   <i class="fas fa-arrow-left me-2"></i> Back
+									</a>
+									<button type="submit" class="btn-update">
+									   Update Profile <i class="fas fa-check-circle ms-2"></i>
+									</button>						
+								</div>
+							</form>
+						</div>
+					</div>
+					
+					<div class="text-center mt-4">
+						<p style="color: var(--text-muted); font-size: 0.85rem;">
+							<i class="fas fa-info-circle me-1"></i> 
+							All changes are logged in the security audit trail.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+</body>
+</html>

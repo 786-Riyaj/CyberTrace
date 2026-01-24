@@ -1,0 +1,733 @@
+
+<!-- <html th:replace="~{base::layout(~{::main})}">
+
+<body>
+	<main>
+	
+		Hero Section
+		<section class="hero-section" id="home">
+			<div class="container">
+				<h1>Protect Your Community from Scams</h1>
+				<p>Advanced case management system for tracking, reporting, and
+					preventing fraud</p>
+				<a class="btn btn-light btn-hero" href="/ReportScam"> <i
+					class="fas fa-flag"></i> Report a Scam
+				</a> <a class="btn btn-light btn-hero" href="/TrackComplaint"> <i
+					class="fas fa-flag"></i>Track Complaint
+				</a>
+
+
+				<button class="btn btn-outline-light btn-hero">
+					<i class="fas fa-info-circle"></i> Learn More
+				</button>
+			</div>
+		</section>
+
+		Notification
+		<div class="row">
+			<div class="col-sm-7 py-5">
+				<h1>This is index pages</h1>
+			</div>
+
+			<div class="col-sm-5 py-5">
+				<div class="card  shadow">
+					<div class="card-header bg-danger">
+						<h4>Important Notification</h4>
+					</div>
+
+					<div class="card-body">
+						<marquee direction="up" scrollamount="2" onmouseover="stop();" onmouseout="start();">
+							<table class="table  border border-white mx-auto" style="height: 230px">
+								<tr th:each="notif : ${notifications}" class="d-flex">
+									<td class="m-2" width="8%"><img src="img/new-blinking.gif" width="50px" alt="" style="transform:rotate(-15deg); margin-right: -10px;"></td>
+									<td class="m-2"><span th:text= "${notif.message}" style="font-size: 18px" >Message</span>[<span th:text="${#temporals.format(notif.publishedAt,'dd-MM-yyyy, hh:mm a')}" class="text-danger small">Date</span>]</td>
+								</tr>
+							</table>
+						</marquee>
+					</div>
+					<div class="card-body">
+						<div class="card-footer text-center">
+							<small>Updated Notification</small>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+		Features Section
+		<section class="features-section" id="services">
+			<div class="container">
+				<h2 class="section-title">Our Services</h2>
+				<div class="row">
+					<div class="col-md-4 mb-4">
+						<div class="feature-card">
+							<i class="fas fa-file-alt feature-icon"></i>
+							<h3>Case Management</h3>
+							<p>Efficiently track and manage scam cases with our
+								comprehensive case management system. Monitor progress and
+								collaborate with teams.</p>
+						</div>
+					</div>
+					<div class="col-md-4 mb-4">
+						<div class="feature-card">
+							<i class="fas fa-search feature-icon"></i>
+							<h3>Scam Detection</h3>
+							<p>Utilize advanced algorithms to detect and identify
+								potential scams before they cause harm to your organization or
+								community.</p>
+						</div>
+					</div>
+					<div class="col-md-4 mb-4">
+						<div class="feature-card">
+							<i class="fas fa-chart-line feature-icon"></i>
+							<h3>Analytics & Reports</h3>
+							<p>Get detailed insights and analytics on scam trends.
+								Generate comprehensive reports for stakeholders and authorities.</p>
+						</div>
+					</div>
+					<div class="col-md-4 mb-4">
+						<div class="feature-card">
+							<i class="fas fa-bell feature-icon"></i>
+							<h3>Real-time Alerts</h3>
+							<p>Receive instant notifications about new scam reports and
+								suspicious activities in your area or organization.</p>
+						</div>
+					</div>
+					<div class="col-md-4 mb-4">
+						<div class="feature-card">
+							<i class="fas fa-users feature-icon"></i>
+							<h3>Community Network</h3>
+							<p>Connect with other organizations and agencies to share
+								information and collaborate on scam prevention efforts.</p>
+						</div>
+					</div>
+					<div class="col-md-4 mb-4">
+						<div class="feature-card">
+							<i class="fas fa-lock feature-icon"></i>
+							<h3>Secure Platform</h3>
+							<p>Bank-level security ensures your sensitive case data
+								remains protected with encryption and secure access controls.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		Statistics Section
+		<section class="stats-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="stat-item">
+							<div class="stat-number">15,234</div>
+							<div class="stat-label">Cases Tracked</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="stat-item">
+							<div class="stat-number">$2.5M</div>
+							<div class="stat-label">Funds Recovered</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="stat-item">
+							<div class="stat-number">500+</div>
+							<div class="stat-label">Organizations</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="stat-item">
+							<div class="stat-number">98%</div>
+							<div class="stat-label">Success Rate</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		How It Works Section
+		<section class="how-it-works">
+			<div class="container">
+				<h2 class="section-title">How It Works</h2>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="step-card">
+							<div class="step-number">1</div>
+							<h4>Report the Scam</h4>
+							<p>Submit detailed information about the scam incident
+								through our secure online form. Include all relevant details,
+								documents, and evidence.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="step-card">
+							<div class="step-number">2</div>
+							<h4>Case Review</h4>
+							<p>Our team reviews your submission and creates a case file.
+								The case is assigned to specialized investigators based on the
+								scam type.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="step-card">
+							<div class="step-number">3</div>
+							<h4>Investigation</h4>
+							<p>Investigators analyze the case, gather additional
+								evidence, and coordinate with relevant authorities and financial
+								institutions.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="step-card">
+							<div class="step-number">4</div>
+							<h4>Resolution</h4>
+							<p>Track the progress of your case through our portal.
+								Receive updates and access final reports upon case resolution.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		About Us Section
+		<section class="features-section" id="about">
+			<div class="container">
+				<h2 class="section-title">About Us</h2>
+				<div class="row align-items-center">
+					<div class="col-md-6">
+						<img
+							src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
+							alt="Team" class="img-fluid rounded shadow">
+					</div>
+					<div class="col-md-6">
+						<h3 class="mb-4">Leading the Fight Against Fraud</h3>
+						<p class="lead">ScamTracker is a comprehensive case management
+							platform dedicated to combating fraud and protecting communities
+							worldwide.</p>
+						<p>Founded in 2020, we've helped thousands of organizations
+							and individuals track, report, and resolve scam cases. Our team
+							of experienced fraud prevention specialists and technology
+							experts work tirelessly to provide the most advanced tools for
+							scam detection and case management.</p>
+						<p>We believe in the power of collaboration and transparency.
+							By bringing together victims, investigators, and law enforcement
+							agencies on a single platform, we create a united front against
+							fraudsters.</p>
+						<div class="mt-4">
+							<i class="fas fa-check-circle text-success me-2"></i> ISO 27001
+							Certified<br> <i
+								class="fas fa-check-circle text-success me-2"></i> 24/7 Support
+							Available<br> <i
+								class="fas fa-check-circle text-success me-2"></i> Trusted by
+							Law Enforcement
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		Case Resolutions Section
+		<section class="case-resolutions-section">
+			<div class="container">
+				<h2 class="section-title">Case Resolutions</h2>
+				<div class="row">
+
+					<div class="col-md-4">
+						<div class="resolution-card">
+							<div class="resolution-text">
+								<h5>₹3,25,000 Recovered – UPI Fraud</h5>
+								<p>Our investigation team traced fraudulent UPI transactions
+									across multiple accounts and coordinated with the bank to
+									freeze the funds within 12 hours.</p>
+							</div>
+							<div class="resolution-author">Case ID: CT-2025-1187</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="resolution-card">
+							<div class="resolution-text">
+								<h5>Online Job Scam Network Busted</h5>
+								<p>Cyber Trace identified a fake job portal fraud ring
+									operating across 3 states. Working with cyber police, the
+									culprits were arrested in a joint raid.</p>
+							</div>
+							<div class="resolution-author">Case ID: CT-2025-1043</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="resolution-card">
+							<div class="resolution-text">
+								<h5>Fake Call Center Shut Down</h5>
+								<p>Our system detected multiple scam calls originating from
+									the same IP cluster. The call center was raided, and 14
+									individuals were detained.</p>
+							</div>
+							<div class="resolution-author">Case ID: CT-2025-1275</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+
+		Contact Section
+		<section class="how-it-works" id="contact">
+			<div class="container">
+				<h2 class="section-title">Contact Us</h2>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="step-card" style="position: relative;">
+							<h4>Get in Touch</h4>
+							<p>
+								<i class="fas fa-map-marker-alt text-primary me-2"></i> Softpro
+								House Near Gudumba Thana , Lucknow
+							</p>
+							<p>
+								<i class="fas fa-phone text-primary me-2"></i> +91 9151678423
+							</p>
+							<p>
+								<i class="fas fa-envelope text-primary me-2"></i>
+								mrsaurabh3414@gmail.com
+							</p>
+							<p>
+								<i class="fas fa-clock text-primary me-2"></i> Mon - Fri: 9:00
+								AM - 6:00 PM
+							</p>
+							<div class="social-icons mt-4">
+								<a href="#"><i class="fab fa-facebook"></i></a> <a href="#"><i
+									class="fab fa-twitter"></i></a> <a href="#"><i
+									class="fab fa-linkedin"></i></a> <a href="#"><i
+									class="fab fa-instagram"></i></a>
+							</div>
+							<h5>Follow Us</h5>
+							<div class="social-links mt-2">
+								<a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+								<a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+								<a href="#" class="me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+								<a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="step-card" style="position: relative;">
+							<h4>Send us a Message</h4>
+							<form>
+								<div class="mb-3">
+									<input type="text" class="form-control" placeholder="Your Name">
+								</div>
+								<div class="mb-3">
+									<input type="email" class="form-control"
+										placeholder="Your Email">
+								</div>
+								<div class="mb-3">
+									<input type="text" class="form-control" placeholder="Subject">
+								</div>
+								<div class="mb-3">
+									<textarea class="form-control" rows="4"
+										placeholder="Your Message"></textarea>
+								</div>
+								<button type="submit" class="btn btn-primary w-100">
+									<i class="fas fa-paper-plane me-2"></i> Send Message
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+	</main>
+</body>
+
+</html>  -->
+
+
+
+
+
+<html th:replace="~{base::layout(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<main>
+		<style>
+:root {
+	--primary-color: #22c55e;
+	--dark-bg: #020617;
+	--card-bg: #0f172a;
+	--text-main: #ffffff;
+	--text-clear: #e2e8f0;
+}
+
+main {
+	background-color: var(--dark-bg);
+	color: var(--text-main);
+	font-family: 'Inter', sans-serif;
+	overflow-x: hidden;
+}
+
+/* --- Header & Footer Sync --- */
+header, .navbar, footer, .contact-footer-bar {
+	background-color: #020617 !important;
+	border-top: 1px solid rgba(34, 197, 94, 0.3) !important;
+	border-bottom: 1px solid rgba(34, 197, 94, 0.3) !important;
+}
+
+
+/* --- Hero Section --- */
+.hero-section {
+	padding: 160px 0 100px;
+	background: radial-gradient(circle at center, rgba(34, 197, 94, 0.15), transparent);
+	text-align: center;
+}
+
+.hero-section h1 { font-size: 4.5rem; font-weight: 800; margin-bottom: 25px; color: #ffffff; }
+.hero-section h1 span { color: var(--primary-color); }
+
+/* --- Buttons Hover --- */
+.btn-cyber {
+	padding: 16px 35px;
+	border-radius: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	transition: all 0.4s ease;
+	margin: 10px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.btn-cyber-primary { background: var(--primary-color); color: #000000; border: none; }
+.btn-cyber-primary:hover { 
+	transform: translateY(-5px); 
+	box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4); 
+	background: #16a34a;
+	color: #fff;
+}
+
+.btn-cyber-outline { border: 2px solid var(--primary-color); color: var(--primary-color); background: transparent; }
+.btn-cyber-outline:hover { 
+	background: var(--primary-color); 
+	color: #000; 
+	transform: translateY(-5px); 
+}
+
+/* --- Service Cards Hover --- */
+.cyber-card {
+	background: var(--card-bg);
+	border: 1px solid rgba(34, 197, 94, 0.2);
+	padding: 45px 35px;
+	border-radius: 25px;
+	height: 100%;
+	text-align: center;
+	transition: all 0.4s ease;
+}
+
+.cyber-card:hover {
+	transform: translateY(-12px);
+	border-color: var(--primary-color);
+	background: rgba(34, 197, 94, 0.05);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cyber-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 25px; transition: 0.4s; }
+.cyber-card:hover .cyber-icon { transform: scale(1.2); }
+
+/* --- Step Box Hover --- */
+.step-box {
+	padding: 40px;
+	background: rgba(15, 23, 42, 0.8);
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	margin-bottom: 30px;
+	height: 100%;
+	transition: all 0.4s ease;
+}
+
+.step-box:hover {
+	border-color: var(--primary-color);
+	background: var(--card-bg);
+	transform: scale(1.05);
+}
+
+/* --- Case Success Hover --- */
+.res-card {
+	background: #0f172a;
+	border-left: 5px solid var(--primary-color);
+	padding: 30px;
+	border-radius: 15px;
+	height: 100%;
+	transition: 0.4s;
+}
+
+.res-card:hover {
+	background: #1e293b;
+	transform: translateX(10px);
+}
+
+/* --- Partners Hover --- */
+.partner-item { transition: 0.4s; padding: 20px; border-radius: 15px; }
+.partner-item:hover { background: rgba(255,255,255,0.05); transform: translateY(-5px); }
+.partner-item:hover .partner-icon { color: #fff; transform: scale(1.1); }
+
+.partner-icon { color: var(--primary-color); margin-bottom: 10px; transition: 0.4s; }
+.partner-name { color: #ffffff; font-weight: 600; font-size: 0.9rem; }
+
+/* --- Notification Card Style --- */
+.notif-card {
+	background: var(--card-bg);
+	border: 1px solid rgba(34, 197, 94, 0.3);
+	border-radius: 20px;
+	overflow: hidden;
+}
+.notif-header {
+	background: rgba(220, 38, 38, 0.1);
+	color: #ef4444;
+	padding: 15px;
+	font-weight: 800;
+	border-bottom: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+/* Sections padding */
+.section-padding { padding: 80px 0; }
+.section-title { font-size: 2.8rem; font-weight: 800; margin-bottom: 60px; text-align: center; color: #ffffff; }
+.section-title span { color: var(--primary-color); }
+
+</style>
+
+		<section class="hero-section">
+			<div class="container">
+				<h1>A Safer Way to<span> Report Cyber</span> Fraud</h1>
+				<p class="fs-4 mb-5 mx-auto" style="max-width: 800px; color: #cbd5e1; font-weight: 500;">
+					A secure and easy-to-use platform where you can report online frauds, track your case status in real time, and get expert support to protect and recover your money.
+				</p>
+				<div class="mt-2">
+					<a href="/ReportScam" class="btn-cyber btn-cyber-primary"><i class="fas fa-bolt me-2"></i> Report Scam</a> 
+					<a href="/TrackComplaint" class="btn-cyber btn-cyber-outline"><i class="fas fa-search me-2"></i> Track Case</a>
+				</div>
+			</div>
+		</section>
+		
+		<section class="py-5">
+			<div class="container">
+				<div class="row g-4 align-items-center">
+					<div class="col-lg-7">
+						<h2 class="fw-bold mb-4 text-white">Live Threat <span style="color: var(--primary-color);">Analysis</span></h2>
+						<p class="text-white opacity-75" style="font-size: 1.1rem; line-height: 1.8;">
+							Our system constantly monitors fraudulent patterns across digital networks. 
+							Stay updated with real-time intelligence dispatched by our forensics unit.
+						</p>
+						<div class="mt-4">
+							<div class="d-flex align-items-center mb-3 text-white">
+								<i class="fas fa-check-circle text-success me-3"></i>
+								<span>ISO 27001 Certified Security Standards</span>
+							</div>
+							<div class="d-flex align-items-center text-white">
+								<i class="fas fa-check-circle text-success me-3"></i>
+								<span>Real-time Coordination with Law Enforcement</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-5">
+						<div class="notif-card shadow-lg">
+							<div class="notif-header">
+								<i class="fas fa-broadcast-tower fa-fade"></i> Live Intelligence Feed
+							</div>
+							<div class="card-body" style="background: #020617; padding: 0;">
+								<marquee direction="up" scrollamount="2" onmouseover="this.stop();" onmouseout="this.start();" style="height: 250px; padding: 20px;">
+									<div th:each="notif : ${notifications}" class="mb-4 p-3 border-start border-danger" style="background: rgba(255,255,255,0.03); border-radius: 0 8px 8px 0;">
+										<h6 class="text-white mb-1" th:text="${notif.message}">Notification Message</h6>
+										<small class="text-danger fw-bold" th:text="${#temporals.format(notif.publishedAt,'dd MMM yyyy, hh:mm a')}">Date</small>
+									</div>
+								</marquee>
+							</div>
+							<div class="p-3 text-center border-top border-secondary">
+								<small class="text-white">System Status: <span class="text-success fw-bold">Active</span></small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-padding" style="background: rgba(15, 23, 42, 0.4);">
+			<div class="container">
+				<h2 class="section-title">How We <span>Help You</span></h2>
+				<div class="row g-4">
+					<div class="col-md-4">
+						<div class="cyber-card">
+							<i class="fas fa-edit cyber-icon"></i>
+							<h4>Report Scam</h4>
+							<p>Quickly fill a simple form to report any money fraud or fake call.</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="cyber-card">
+							<i class="fas fa-eye cyber-icon"></i>
+							<h4>Live Tracking</h4>
+							<p>Check exactly what is happening with your complaint at any time.</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="cyber-card">
+							<i class="fas fa-shield-alt cyber-icon"></i>
+							<h4>Money Safety</h4>
+							<p>We work with banks to block your money from reaching the scammers.</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="cyber-card">
+							<i class="fas fa-lock cyber-icon"></i>
+							<h4>Data Privacy</h4>
+							<p>Your personal details are 100% safe with our locked security system.</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="cyber-card">
+							<i class="fas fa-user-shield cyber-icon"></i>
+							<h4>Expert Support</h4>
+							<p>Talk to our team of experts who will guide you on how to get help.</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="cyber-card">
+							<i class="fas fa-bell cyber-icon"></i>
+							<h4>Instant Alerts</h4>
+							<p>Get fast messages about new types of scams starting in your city.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-padding">
+			<div class="container">
+				<h2 class="section-title">Easy <span>4 Step</span> Process</h2>
+				<div class="row g-4">
+					<div class="col-md-6 col-lg-3">
+						<div class="step-box">
+							<h4 class="text-success mb-3">01</h4>
+							<h5>Submit Case</h5>
+							<p>Fill out the scam details on our secure website.</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="step-box">
+							<h4 class="text-success mb-3">02</h4>
+							<h5>Team Review</h5>
+							<p>Our experts check your case and start working on it.</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="step-box">
+							<h4 class="text-success mb-3">03</h4>
+							<h5>Take Action</h5>
+							<p>We talk to banks and police to track the fraud.</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="step-box">
+							<h4 class="text-success mb-3">04</h4>
+							<h5>Get Results</h5>
+							<p>Track your progress and get your case solved.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-padding" style="background: #000;">
+			<div class="container">
+				<h2 class="section-title">Cases <span>Solved</span></h2>
+				<div class="row g-4">
+					<div class="col-md-6 col-lg-3">
+						<div class="res-card">
+							<h5 class="text-white">UPI Fraud</h5>
+							<p class="small">₹3.2L saved from a fake link scam in 12 hours.</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="res-card">
+							<h5 class="text-white">Job Scam</h5>
+							<p class="small">Closed a fake job website stealing money from people.</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="res-card">
+							<h5 class="text-white">Call Fraud</h5>
+							<p class="small">Stopped a fake call center that was tricking old people.</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3">
+						<div class="res-card">
+							<h5 class="text-white">App Scam</h5>
+							<p class="small">Blocked 10 fake apps that were taking personal data.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-padding">
+			<div class="container text-center">
+				<h2 class="section-title">Our <span>Partners</span></h2>
+				<div class="row g-4 align-items-center justify-content-center">
+					<div class="col-md-2 col-6 partner-item">
+						<i class="fas fa-university fa-3x partner-icon"></i>
+						<div class="partner-name">Major Banks</div>
+					</div>
+					<div class="col-md-2 col-6 partner-item">
+						<i class="fas fa-building-shield fa-3x partner-icon"></i>
+						<div class="partner-name">Cyber Police</div>
+					</div>
+					<div class="col-md-2 col-6 partner-item">
+						<i class="fas fa-fingerprint fa-3x partner-icon"></i>
+						<div class="partner-name">Forensic Labs</div>
+					</div>
+					<div class="col-md-2 col-6 partner-item">
+						<i class="fas fa-globe-americas fa-3x partner-icon"></i>
+						<div class="partner-name">Global Security</div>
+					</div>
+					<div class="col-md-2 col-6 partner-item">
+						<i class="fas fa-user-tie fa-3x partner-icon"></i>
+						<div class="partner-name">Legal Experts</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-padding border-top border-success text-center">
+			<div class="container">
+				<h3 class="fw-bold text-white mb-4">Take Action Against Online Fraud</h3>
+				<p class="fs-5 mb-5" style="color: #cbd5e1;">Don’t wait. Report a scam and get help quickly.</p>
+				<a href="/ReportScam" class="btn-cyber btn-cyber-primary">Report a Scam</a>
+			</div>
+		</section>
+
+	</main>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

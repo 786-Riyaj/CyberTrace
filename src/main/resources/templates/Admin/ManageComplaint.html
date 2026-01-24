@@ -1,0 +1,300 @@
+<!-- <html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-header bg-primary">
+						<h4 class="txet-center text-white m-0">Manage 
+							Complaints</h4>
+					</div>
+
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Sr. No.</th>
+										<th>Complaint Id</th>
+										<th>Investigator</th>
+										<th>Victim Name</th>
+										<th>Contact No.</th>
+										<th>Scammer</th>
+										<th>Title</th>
+										<th>Type of Scam</th>
+										<th>Status</th>
+										<th>Date</th>
+										<th>Evidence</th>
+									</tr>
+								</thead>
+
+								<tr th:each="com, srno : ${complaints}">
+									<td th:text="${srno.index+1}"></td>
+									<td th:text="${com.complaintId}"></td>
+									<td th:text="${com.assignedTo.name}"></td>
+									<td th:text="${com.name}"></td>
+									<td th:text="${com.contactNo}"></td>
+									<td th:text="${com.scammer}"></td>
+									<td th:text="${com.title}"></td>
+									<td th:text="${com.typeOfScam}"></td>
+									<td><span class=" badge bg-warning rounded-5 "
+										th:text="${com.status}"></span></td>
+									<td
+										th:text="${#temporals.format(com.regDateTime, 'dd-MM-yyyy HH:mm')}"></td>
+									<td><a class="btn btn-success btn-sm" data-bs-toggle="modal" th:data-bs-target="${'#evidenceModal__' + com.id}">View..</a></td>
+									
+									
+								</tr>
+
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+
+Evidence Modal
+
+<div th:each="com : ${complaints} " class="modal fade" th:id="${'evidenceModal__' + com.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Complaint Evidence</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+        <div class="col-sm-4" th:each="images:${com.evidence}">
+        <img class="w-100" alt="Image not found " th:src="@{'/uploads/' + ${images}}">
+        </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+	
+	
+	
+	
+	<script type="text/javascript">
+	var msg = "[[${msg}]]";
+	if(msg!=""){
+		alert(msg);
+	}
+	</script>
+	</main>
+
+</body>
+</html> -->
+
+
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main style="background-color: #020617; min-height: 100vh; padding: 30px;">
+		
+		<style>
+			:root {
+				--cyber-green: #22c55e;
+				--cyber-blue: #3b82f6;
+				--cyber-yellow: #eab308;
+				--panel-bg: #0f172a;
+				--text-bright: #ffffff;
+				--text-dim: #cbd5e1;
+			}
+
+			.custom-panel {
+				background: var(--panel-bg);
+				border: 1px solid rgba(34, 197, 94, 0.2);
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+			}
+
+			.panel-header {
+				background: rgba(34, 197, 94, 0.1);
+				border-bottom: 2px solid var(--cyber-green);
+				padding: 20px;
+			}
+
+			.panel-header h4 {
+				color: var(--cyber-green);
+				font-weight: 800;
+				margin: 0;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+			}
+
+			/* --- Table Styling --- */
+			.custom-table { color: var(--text-bright) !important; }
+			.custom-table thead th {
+				background: #1e293b;
+				color: var(--cyber-green);
+				padding: 15px;
+				font-weight: 800;
+				font-size: 0.8rem;
+				text-align: center;
+				border: none;
+			}
+			.custom-table td {
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+				padding: 12px;
+				vertical-align: middle;
+				text-align: center;
+				color: var(--text-dim);
+				font-size: 0.85rem;
+			}
+
+			/* --- Investigator Highlight --- */
+			.investigator-badge {
+				color: var(--cyber-blue);
+				font-weight: 700;
+				display: block;
+				font-size: 0.9rem;
+			}
+
+			/* --- Status Badges --- */
+			.badge-status {
+				background: rgba(234, 179, 8, 0.1);
+				color: var(--cyber-yellow);
+				border: 1px solid var(--cyber-yellow);
+				padding: 5px 12px;
+				font-weight: 600;
+			}
+
+			/* --- Modal Styling --- */
+			.modal-content {
+				background: var(--panel-bg);
+				color: white;
+				border: 1px solid var(--cyber-green);
+			}
+			.modal-header { border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+			/* --- Fixed Width Toast --- */
+			#custom-toast {
+				position: fixed; top: 85px; right: 20px;
+				background: #0f172a; border-left: 5px solid var(--cyber-green);
+				color: white; padding: 20px; border-radius: 8px;
+				box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+				display: none; z-index: 10000; width: 350px;
+				max-width: 90vw; word-wrap: break-word;
+				animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			}
+			@keyframes slideIn { from { transform: translateX(120%); } to { transform: translateX(0); } }
+		</style>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="custom-panel shadow">
+						<div class="panel-header text-center">
+							<h4><i class="fas fa-clipboard-list me-2"></i> Manage All Complaints</h4>
+						</div>
+
+						<div class="card-body p-0">
+							<div class="table-responsive">
+								<table class="table custom-table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Complaint ID</th>
+											<th>Investigator</th>
+											<th>Victim Name</th>
+											<th>Contact</th>
+											<th>Scammer</th>
+											<th>Subject</th>
+											<th>Type</th>
+											<th>Status</th>
+											<th>Date</th>
+											<th>Evidence</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="com, srno : ${complaints}">
+											<td th:text="${srno.index+1}"></td>
+											<td class="text-white fw-bold" th:text="${com.complaintId}"></td>
+											<td>
+												<span class="investigator-badge">
+													<i class="fas fa-user-shield me-1 small"></i>
+													<span th:text="${com.assignedTo.name}"></span>
+												</span>
+											</td>
+											<td class="text-white" th:text="${com.name}"></td>
+											<td th:text="${com.contactNo}"></td>
+											<td class="text-danger fw-bold" th:text="${com.scammer}"></td>
+											<td th:text="${com.title}"></td>
+											<td th:text="${com.typeOfScam}"></td>
+											<td>
+												<span class="badge badge-status rounded-pill" th:text="${com.status}"></span>
+											</td>
+											<td th:text="${#temporals.format(com.regDateTime, 'dd-MM-yyyy')}"></td>
+											<td>
+												<button class="btn btn-outline-success btn-sm px-3" data-bs-toggle="modal" th:data-bs-target="${'#evidenceModal__' + com.id}">
+													<i class="fas fa-eye"></i> View
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div th:each="com : ${complaints}" class="modal fade" th:id="${'evidenceModal__' + com.id}" tabindex="-1">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"><i class="fas fa-folder-open text-success me-2"></i> Evidence Files</h5>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row g-3">
+							<div class="col-sm-4" th:each="images : ${com.evidence}">
+								<div class="border border-secondary p-1 rounded bg-black">
+									<img class="w-100 rounded" alt="Evidence" 
+										 th:src="@{'/uploads/' + ${images}}" 
+										 style="height: 160px; object-fit: cover;">
+								</div>
+							</div>
+						</div>
+						<div th:if="${#lists.isEmpty(com.evidence)}" class="text-center p-4">
+							<i class="fas fa-image-slash fs-1 text-secondary mb-2"></i>
+							<p class="text-dim">No evidence images uploaded for this complaint.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="custom-toast">
+			<div class="d-flex align-items-start">
+				<i class="fas fa-check-circle text-success fs-3 me-3 mt-1"></i>
+				<div style="flex: 1;">
+					<h6 class="m-0 fw-bold text-success">System Notification</h6>
+					<div id="toast-text" class="small mt-1" style="color: white; font-weight: 500;"></div>
+				</div>
+			</div>
+		</div>
+
+		<script th:inline="javascript">
+			var msg = /*[[${msg}]]*/ "";
+			if (msg && msg.trim() !== "" && msg !== "null") {
+				var toast = document.getElementById('custom-toast');
+				document.getElementById('toast-text').innerText = msg;
+				toast.style.display = 'block';
+				setTimeout(function() {
+					toast.style.opacity = '0';
+					toast.style.transition = '0.8s';
+					setTimeout(function() { toast.style.display = 'none'; }, 800);
+				}, 4000);
+			}
+		</script>
+	</main>
+</body>
+</html>

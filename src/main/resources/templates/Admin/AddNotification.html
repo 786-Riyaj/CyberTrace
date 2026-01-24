@@ -1,0 +1,319 @@
+<!-- <html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-sm-8 mx-auto mt-4 mb-2">
+					<div class="card shadow">
+						<div class="card-header bg-primary">
+							<h4 class="text-center text-white m-0">Add Notification</h4>
+						</div>
+						<div class="card-body">
+							<form action="#" th:action="@{AddNotification}" method="post">
+								<div class="form-group">
+									<label for="message">Message</label>
+									<textarea id="message" name="message" class="form-control"
+										rows="5" placeholder="Enter notification message" required></textarea>
+								</div>
+								<div class="form-group text-center mt-3">
+									<button type="submit" class="btn btn-primary">Publish</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			Show Table 
+			<div class="row">
+				<div class="col-sm-12 mx-auto mt-4 mb-2">
+					<div class="card shadow">
+						<div class="card-header bg-primary">
+							<h4 class="text-center text-white m-0">Publish Notification</h4>
+						</div>
+						<div class="card-body ">
+							<div class="table-responsive ">
+								<table class="table table-bordered ">
+									<thead class="text-center">
+										<tr>
+											<th>Sr. No.</th>
+											<th>Message</th>
+											<th>Status</th>
+											<th>Action</th>
+											<th>Date</th>
+										</tr>
+									</thead>
+
+									<tr th:each="notif, srno :${notifications}">
+										<td th:text="${srno.index+1}" class="text-center"></td>
+										<td th:text="${notif.message}"></td>
+										<td class="text-center"><span class="badge"
+											th:classappend="${notif.status.name=='RUNNING' ? 'bg-success' :'bg-danger'}"
+											th:text="${notif.status}"></span></td>
+										<td class="text-center"><a
+											th:if="${notif.status.name()=='RUNNING'}"
+											onclick="return confirm('Are you want to end ? ')"
+											class="btn btn-danger btn-sm"
+											th:href="@{'EndNotification/' + ${notif.id}}">End</a> <a
+											class="btn btn-danger btn-sm"
+											th:href="@{/Admin/DeleteNotification/{id}(id=${notif.id})}"
+											onclick="return confirm('Are you sure you want to delete this notification?')">
+												Delete </a></td>
+
+										<td
+											th:text="${#temporals.format(notif.publishedAt, 'dd MMM yyyy')}"
+											class="text-center"></td>
+									</tr>
+
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<script type="text/javascript">
+			var msg = "[[${msg}]]";
+			if (msg != "") {
+				alert(msg);
+			}
+		</script>
+	</main>
+
+</body>
+</html>
+ -->
+ 
+ 
+ <html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<body>
+	<main style="background-color: #020617; min-height: 100vh; padding: 30px;">
+		
+		<style>
+			:root {
+				--cyber-green: #22c55e;
+				--cyber-red: #ef4444;
+				--panel-bg: #0f172a;
+				--text-bright: #ffffff; /* Pehle muted tha, ab pure white hai */
+				--text-silver: #cbd5e1; /* Secondary text ke liye saaf color */
+			}
+
+			/* Panel and Container */
+			.custom-panel {
+				background: var(--panel-bg);
+				border: 1px solid rgba(34, 197, 94, 0.3);
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+				margin-bottom: 30px;
+			}
+
+			.panel-header {
+				background: rgba(34, 197, 94, 0.15);
+				border-bottom: 1px solid var(--cyber-green);
+				padding: 20px;
+			}
+
+			.panel-header h4 {
+				color: var(--cyber-green);
+				font-weight: 800;
+				margin: 0;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+
+			/* Form Controls - No Muted Text */
+			.cyber-label {
+				color: var(--text-bright); /* High Visibility */
+				font-weight: 700;
+				margin-bottom: 10px;
+				display: block;
+			}
+
+			.cyber-textarea {
+				background: #000000 !important;
+				border: 2px solid #334155 !important;
+				color: #ffffff !important; /* Text typing area */
+				font-size: 1.1rem;
+				border-radius: 10px;
+				padding: 15px;
+			}
+
+			.cyber-textarea:focus {
+				border-color: var(--cyber-green) !important;
+				box-shadow: 0 0 15px rgba(34, 197, 94, 0.4) !important;
+			}
+
+			/* --- Table High Visibility (Fixed Width) --- */
+			.custom-table {
+				color: var(--text-bright) !important; /* Pure White Text */
+			}
+
+			.custom-table thead th {
+				background: #1e293b;
+				color: var(--cyber-green); /* Sharp Green Header */
+				padding: 15px;
+				font-weight: 800;
+				border-bottom: 3px solid var(--cyber-green);
+			}
+
+			.custom-table tbody td {
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				padding: 15px;
+				vertical-align: middle;
+				color: var(--text-bright) !important; /* Saaf dikhne ke liye */
+			}
+
+			.msg-column {
+				max-width: 450px;
+				min-width: 250px;
+				white-space: normal !important;
+				word-break: break-word;
+				line-height: 1.6;
+				color: var(--text-silver) !important; /* Content thoda soft silver */
+			}
+
+			/* --- Toast Alert (Fixed Width & Bright Text) --- */
+			#custom-toast {
+				position: fixed;
+				top: 80px;
+				right: 20px;
+				background: #0f172a;
+				border-left: 6px solid var(--cyber-green);
+				color: var(--text-bright);
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 20px 60px rgba(0,0,0,1);
+				display: none;
+				z-index: 10000;
+				width: 360px;
+				max-width: 90vw;
+				word-wrap: break-word;
+				animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			}
+
+			.toast-header-text {
+				color: var(--cyber-green);
+				font-weight: 800;
+				margin-bottom: 5px;
+				display: block;
+			}
+
+			@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+			.btn-publish { background: var(--cyber-green); color: #000; font-weight: 800; border: none; padding: 12px 30px; border-radius: 8px; }
+			.btn-cancel { background: transparent; color: var(--cyber-red); font-weight: 700; border: 2px solid var(--cyber-red); padding: 10px 25px; border-radius: 8px; }
+		</style>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<div class="custom-panel">
+						<div class="panel-header text-center">
+							<h4><i class="fas fa-satellite-dish me-2"></i> System Broadcast</h4>
+						</div>
+						<div class="card-body p-4">
+							<form th:action="@{AddNotification}" method="post">
+								<div class="form-group">
+									<label class="cyber-label">Enter Message Details</label>
+									<textarea id="notifMessage" name="message" class="form-control cyber-textarea"
+										rows="4" placeholder="Type your official announcement..." required></textarea>
+								</div>
+								
+								<div class="d-flex justify-content-center gap-3 mt-4">
+									<button type="submit" class="btn-publish shadow">
+										<i class="fas fa-bullhorn me-2"></i> PUBLISH
+									</button>
+									<!-- <button type="button" onclick="clearForm()" class="btn-cancel">
+										<i class="fas fa-eraser me-2"></i> CANCEL
+									</button> -->
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<div class="custom-panel">
+						<div class="panel-header">
+							<h4 class="m-0"><i class="fas fa-database me-2"></i> Broadcast History</h4>
+						</div>
+						<div class="table-responsive">
+							<table class="table custom-table mb-0">
+								<thead class="text-center">
+									<tr>
+										<th>ID</th>
+										<th class="text-start">Message Content</th>
+										<th>Status</th>
+										<th>Management</th>
+										<th>Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="notif, srno : ${notifications}">
+										<td class="text-center fw-bold" th:text="${srno.index+1}"></td>
+										<td class="msg-column text-start" th:text="${notif.message}"></td>
+										<td class="text-center">
+											<span th:class="${notif.status.name == 'RUNNING' ? 'badge bg-success' : 'badge bg-danger'}"
+												  th:text="${notif.status}" style="padding: 8px 12px;"></span>
+										</td>
+										<td class="text-center">
+											<div class="btn-group">
+												<a th:if="${notif.status.name() == 'RUNNING'}"
+												   class="btn btn-sm btn-outline-warning fw-bold me-2"
+												   th:href="@{'/Admin/EndNotification/' + ${notif.id}}">Stop</a>
+												<a class="btn btn-sm btn-outline-danger fw-bold"
+												   th:href="@{/Admin/DeleteNotification/{id}(id=${notif.id})}"
+												   onclick="return confirm('Confirm Deletion?')">Delete</a>
+											</div>
+										</td>
+										<td class="text-center fw-bold" th:text="${#temporals.format(notif.publishedAt, 'dd MMM yyyy')}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="custom-toast">
+			<div class="d-flex align-items-start">
+				<i class="fas fa-shield-alt text-success fs-3 me-3 mt-1"></i>
+				<div style="flex: 1;">
+					<span class="toast-header-text">SYSTEM RESPONSE</span>
+					<div id="toast-text" style="color: #ffffff; font-weight: 600; font-size: 0.95rem;"></div>
+				</div>
+			</div>
+		</div>
+
+		<script th:inline="javascript">
+			function clearForm() {
+				if(confirm("Discard current message?")) {
+					document.getElementById('notifMessage').value = "";
+				}
+			}
+
+			// Toast Handling
+			var msg = /*[[${msg}]]*/ "";
+			if (msg && msg.trim() !== "" && msg !== "null") {
+				var toast = document.getElementById('custom-toast');
+				document.getElementById('toast-text').innerText = msg;
+				toast.style.display = 'block';
+
+				setTimeout(function() {
+					toast.style.opacity = '0';
+					toast.style.transition = '0.8s';
+					setTimeout(function() { toast.style.display = 'none'; }, 800);
+				}, 5000);
+			}
+		</script>
+	</main>
+</body>
+</html>

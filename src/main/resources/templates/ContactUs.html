@@ -1,0 +1,393 @@
+<!-- <html th:replace="~{base::layout(~{::main})}">
+<body>
+	<main>
+		Hero Section
+		<section class="contact-hero d-flex align-items-center">
+			<div class="container text-center text-white">
+				<h1 class="display-5 fw-bold">Contact Us</h1>
+				<p class="lead mt-3">We’re here to assist you with scam reporting, case tracking, and technical queries.
+				</p>
+			</div>
+		</section>
+
+		Contact Information
+		<section class="py-5">
+			<div class="container">
+				<h2 class="section-title text-center mb-5">Get in Touch</h2>
+
+				<div class="row">
+
+					Contact Info
+					<div class="col-md-5">
+						<div class="p-4 shadow rounded bg-white">
+							<h4 class="mb-3">Contact Information</h4>
+							<p><i class="fas fa-map-marker-alt text-primary me-2"></i> Softpro House, Near Gudamba
+								Thana, Lucknow</p>
+							<p><i class="fas fa-phone text-primary me-2"></i> +91 9151678423</p>
+							<p><i class="fas fa-envelope text-primary me-2"></i> support@scamtracker.com</p>
+							<p><i class="fas fa-clock text-primary me-2"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
+
+							<h5 class="mt-4">Follow Us</h5>
+							<div class="social-links mt-2">
+								<a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+								<a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+								<a href="#" class="me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+								<a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+							</div>
+						</div>
+					</div>
+
+					Contact Form
+					<div class="col-md-7">
+						<div class="p-4 shadow rounded bg-white">
+							<h4 class="mb-3">Send Us a Message</h4>
+
+							<form action="/ContactUs" method="post" th:object="${dto}">
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label>Enter your name :</label>
+										<input th:field="${dto.name}" type="text" class="form-control" placeholder="Your Name" required>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label>Enter your email :</label>
+										<input th:field="${dto.email}" type="email" class="form-control" placeholder="Your Email" required>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label>Select Gender :</label>
+										<select th:field="${dto.gender}" class="form-control" required>
+											<option value="">--Your Gender--</option>
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label>Enter Contact Number :</label>
+										<input th:field="${dto.contactNo}" type="tel" class="form-control" placeholder="Your ContactNo" required
+											pattern="\d{10}">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label>Enter Address :</label>
+										<input th:field="${dto.address}" type="text" class="form-control" placeholder="Your Address">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label>Enter Subject :</label>
+										<input th:field="${dto.subject}" type="text" class="form-control" placeholder="Subject" required>
+									</div>
+
+								</div>
+
+								<div class="mb-3">
+									<label>Write your Query :</label>
+									<textarea th:field="${dto.message}" class="form-control" rows="3" cols="" placeholder="Your Message"
+										required></textarea>
+								</div>
+
+								<button type="submit" class="btn btn-primary w-100">
+									<i class="fas fa-paper-plane me-2"></i> Send Message
+								</button>
+							</form>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		Google Map (Optional)
+		<section class="mt-4">
+			<div class="container">
+				<h2 class="section-title text-center mb-4">Our Location</h2>
+				<div class="map-container shadow rounded overflow-hidden">
+					<iframe src="https://www.google.com/maps?q=Softpro%20House%20Lucknow&z=15&output=embed" width="100%"
+						height="350" style="border:0;" allowfullscreen loading="lazy">
+					</iframe>
+				</div>
+			</div>
+		</section>
+
+	</main>
+</body>
+
+</html> -->
+
+
+
+
+<html th:replace="~{base::layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<main>
+		<style>
+:root {
+	--primary-color: #22c55e; /* Bright Green */
+	--dark-bg: #020617; /* Slate Black */
+	--card-bg: #0f172a; /* Deep Slate Blue */
+	--text-main: #e5e7eb; /* Light Grayish White */
+	--text-muted: #94a3b8; /* Slate Gray */
+}
+
+/* --- Header & Footer Sync --- */
+header, .navbar, footer, .contact-footer-bar {
+	background-color: #020617 !important;
+	border-top: 1px solid rgba(34, 197, 94, 0.3) !important;
+	border-bottom: 1px solid rgba(34, 197, 94, 0.3) !important;
+}
+
+main {
+	background-color: var(--dark-bg);
+	color: var(--text-main);
+	font-family: 'Inter', sans-serif;
+}
+
+/* --- Text Clarity Adjustments --- */
+.lead {
+	color: var(--text-muted) !important;
+	font-weight: 400;
+}
+
+p {
+	color: var(--text-muted);
+}
+
+h1, h2, h3, h4, h5 {
+	color: #ffffff !important;
+}
+
+/* --- Hero Section --- */
+.hero-wrap {
+	padding: 120px 0 60px;
+	background: radial-gradient(circle at top center, rgba(34, 197, 94, 0.1),
+		transparent);
+	text-align: center;
+}
+
+.hero-title {
+	font-size: 3.5rem;
+	font-weight: 800;
+}
+
+.hero-title span {
+	color: var(--primary-color);
+	text-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+/* --- Contact Cyber Cards --- */
+.cyber-contact-card {
+	background: var(--card-bg);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	/* Slightly brighter border */
+	border-radius: 20px;
+	padding: 35px;
+	height: 100%;
+	transition: 0.4s;
+}
+
+.cyber-contact-card:hover {
+	border-color: var(--primary-color);
+	transform: translateY(-5px);
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+.icon-box {
+	width: 50px;
+	height: 50px;
+	background: rgba(34, 197, 94, 0.15);
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--primary-color);
+	font-size: 1.5rem;
+	margin-bottom: 20px;
+}
+
+/* --- Professional Form Styling --- */
+.form-container {
+	background: var(--card-bg);
+	border-radius: 25px;
+	padding: 45px;
+	border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.form-label {
+	color: #ffffff; /* Labels white for visibility */
+	font-weight: 600;
+	font-size: 0.9rem;
+	margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+	background-color: #020617 !important;
+	border: 1px solid rgba(255, 255, 255, 0.2) !important;
+	color: #ffffff !important;
+	border-radius: 12px;
+	padding: 14px 18px;
+}
+
+.form-control:focus {
+	border-color: var(--primary-color) !important;
+	box-shadow: 0 0 15px rgba(34, 197, 94, 0.3) !important;
+}
+
+/* --- Submit Button --- */
+.btn-cyber-submit {
+	background: var(--primary-color);
+	color: #020617;
+	font-weight: 800;
+	padding: 16px;
+	border-radius: 12px;
+	border: none;
+	transition: 0.3s;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.btn-cyber-submit:hover {
+	background: #4ade80;
+	box-shadow: 0 0 25px rgba(34, 197, 94, 0.5);
+	transform: scale(1.01);
+}
+
+/* --- Map Styling --- */
+.map-box {
+	border-radius: 25px;
+	overflow: hidden;
+	border: 1px solid rgba(34, 197, 94, 0.3);
+	filter: grayscale(1) invert(0.92) contrast(1.2);
+}
+</style>
+
+		<section class="hero-wrap">
+			<div class="container">
+				<h1 class="hero-title">
+					Contact <span>CyberTrace</span>
+				</h1>
+				<p class="lead mt-3 mx-auto" style="max-width: 700px;">Our
+					expert investigators are available to support you. Connect with us
+					through secure communication channels for cyber scam reporting,
+					digital investigations, and forensic assistance.</p>
+			</div>
+		</section>
+
+		<section class="py-5">
+			<div class="container">
+				<div class="row g-5">
+					<div class="col-lg-4">
+						<div class="row g-4">
+							<div class="col-12">
+								<div class="cyber-contact-card">
+									<div class="icon-box">
+										<i class="fas fa-map-marker-alt"></i>
+									</div>
+									<h5 class="fw-bold">Location</h5>
+									<p class="mb-0">Softpro House, Near Gudamba Thana, Lucknow,
+										UP</p>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="cyber-contact-card">
+									<div class="icon-box">
+										<i class="fas fa-phone-alt"></i>
+									</div>
+									<h5 class="fw-bold">Emergency Line</h5>
+									<p class="mb-0"
+										style="color: var(--primary-color); font-weight: bold;">+91
+										80XX70XX90</p>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="cyber-contact-card">
+									<div class="icon-box">
+										<i class="fas fa-envelope-open-text"></i>
+									</div>
+									<h5 class="fw-bold">Secure Email</h5>
+									<p class="mb-0">support@cybertrace.com</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-8">
+						<div class="form-container">
+							<h3 class="fw-bold mb-4">
+								Initialize <span style="color: var(--primary-color);">Inquiry</span>
+							</h3>
+
+							<form action="/ContactUs" method="post" th:object="${dto}">
+								<div class="row">
+									<div class="col-md-6 mb-4">
+										<label class="form-label">Full Name</label> <input
+											th:field="${dto.name}" type="text" class="form-control"
+											placeholder="Enter your name" required>
+									</div>
+									<div class="col-md-6 mb-4">
+										<label class="form-label">Email Address</label> <input
+											th:field="${dto.email}" type="email" class="form-control"
+											placeholder="Your Email" required>
+									</div>
+									<div class="col-md-6 mb-4">
+										<label class="form-label">Gender</label> <select
+											th:field="${dto.gender}" class="form-select form-control"
+											required>
+											<option value="">-- Choose --</option>
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+										</select>
+									</div>
+									<div class="col-md-6 mb-4">
+										<label class="form-label">Phone Number</label> <input
+											th:field="${dto.contactNo}" type="tel" class="form-control"
+											placeholder="10 Digit Number" required pattern="\d{10}">
+									</div>
+									<div class="col-md-6 mb-4">
+										<label class="form-label">Subject of Inquiry</label> <input
+											th:field="${dto.subject}" type="text" class="form-control"
+											placeholder="Ex: Financial Fraud Reporting" required>
+									</div>
+									<div class="col-md-6 mb-4">
+										<label class="form-label">Address</label> <input
+											th:field="${dto.address}" type="text" class="form-control"
+											placeholder="Enter your Address" required>
+									</div>
+									<div class="col-md-12 mb-4">
+										<label class="form-label">Case Details / Message</label>
+										<textarea th:field="${dto.message}" class="form-control"
+											rows="4" placeholder="Briefly describe your situation..."
+											required></textarea>
+									</div>
+								</div>
+								<button type="submit" class="btn-cyber-submit w-100">
+									<i class="fas fa-paper-plane me-2"></i> Send Message
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="py-5">
+			<div class="container text-center">
+				<h2 class="fw-bold mb-5 text-white">
+					Find Us on <span>Radar</span>
+				</h2>
+				<div class="map-box">
+					<!--  // class="map-container shadow rounded overflow-hidden" -->
+					<iframe
+						src="https://www.google.com/maps?q=Softpro%20House%20Lucknow&z=15&output=embed"
+						width="100%" height="350" style="border: 0;" allowfullscreen
+						loading="lazy"> </iframe>
+
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!-- <html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<head>
+<title>Admin Zone</title>
+</head>
+<body>
+	<main>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card p-3 px-4">
+					<div class="row">
+						<div class="col-sm-6 pt-2">
+							<h4 class="m-0">
+								Welcome,<span th:text="${session.loggedInAdmin.name}"></span>
+							</h4>
+							<p class="m-0">Here is your analystic admin dashboard</p>
+						</div>
+
+						<div class="col-sm-6 text-start text-sm-end">
+							<img class="rounded-circle" style="width:80px; height:80px; " th:src="@{${session.loggedInAdmin.profilePic != null ? '/Profile/' + session.loggedInAdmin.profilePic : '../assets/images/user/avatar-2.jpg'}}">
+
+							<p th:text="${session.loggedInAdmin.email}" class="m-0"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header bg-cyan-500 p-3 text-center">
+						<h5 class="ms-0 ">
+							<i class="ti ti-users fs-4 text-danger fs-5"></i> Total
+							Investigators
+						</h5>
+
+					</div>
+					<div class="card-body text-center">
+						<h4 class="m-0 pt-1" th:text="${totalInvestigators}">50+</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header bg-gray-500 p-3 text-center">
+						<h5 class="ms-0 ">
+							<i class="ti ti-report fs-4 text-danger fs-5"></i> Total
+							Complaints Received
+						</h5>
+					</div>
+					<div class="card-body text-center">
+						<h4 class="m-0 pt-1" th:text="${totalComplaints}">50+</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header bg-cyan-500 p-3 text-center">
+						<h5 class="ms-0 ">
+							<i class="ti ti-zoom-question fs-4 text-danger fs-5"></i> Total
+							Enquiries
+						</h5>
+					</div>
+					<div class="card-body text-center">
+						<h4 class="m-0 pt-1" th:text="${totalEnquiries}">50+</h4>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<div class="col-md-3">
+				<div class="card border border-warning text-center ">
+					<i
+						class="ti ti-report p-2 bg-warning mx-auto fs-3 text-white rounded-circle m-2"
+						style="width: 50px; height: 50px; line-height: 30px;"></i>
+					<h4 class="py-2" th:text="${processingComplaints}">50+</h4>
+					<div class="card-footer p-2 bg-warning ">
+						<h5 class="m-0 text-white">Pending Complaints</h5>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-3">
+				<div class="card border border-danger text-center ">
+					<i
+						class="ti ti-credit-card-off p-2 bg-danger mx-auto fs-3 text-white rounded-circle m-2"
+						style="width: 50px; height: 50px; line-height: 30px;"></i>
+					<h4 class="py-2" th:text="${rejectComplaints}">50+</h4>
+					<div class="card-footer p-2 bg-danger ">
+						<h5 class="m-0 text-white">Rejected Complaint</h5>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="card border border-primary text-center ">
+					<i
+						class="ti ti-aperture p-2 bg-primary mx-auto fs-3 text-white rounded-circle m-2"
+						style="width: 50px; height: 50px; line-height: 30px;"></i>
+					<h4 class="py-2" th:text="${processingComplaints}">50+</h4>
+					<div class="card-footer p-2 bg-primary ">
+						<h5 class="m-0 text-white">Inprogress</h5>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-3">
+				<div class="card border border-success text-center ">
+					<i
+						class="ti ti-checkbox p-2 bg-success mx-auto fs-3 text-white rounded-circle m-2"
+						style="width: 50px; height: 50px; line-height: 30px;"></i>
+					<h4 class="py-2" th:text="${resolvedComplaints}">50+</h4>
+					<div class="card-footer p-2 bg-success ">
+						<h5 class="m-0 text-white">Resolved Complaints</h5>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+		<div class="row mt-3 pt-3" style="border-top:1px solid gray; " >
+			<div class="col-md-8">
+			
+			<div class="card shadow-sm border-0 rounded-3">
+			            <div class="card-header bg-success text-white fw-bold">
+			              <i class="bi bi-bar-chart-fill me-2"></i> Complaint Overview
+			            </div>
+			            <div class="card-body">
+			              <canvas id="complaintChart" height="115"></canvas>
+			            </div>
+			         </div>
+			
+			</div>
+			<div class="col-md-4">
+
+				<div class="card">
+					<div class="card-header bg-primary text-white p-3">
+						<i class="ti ti-message fs-4 "></i> <span>Recent Enquiries</span>
+					</div>
+					<div class="card-body p-1">
+						<ul class="list-group list-group-flush" style="max-height: 350px; overflow-y: auto;">
+							<li th:each ="enq :${enquiries}" class="list-group-item p-3">
+							<strong th:text="${enq.name}">Person Name</strong>
+							<small th:text="${#temporals.format(enq.enquiryDate, 'dd MMMs yyyy')}" class="text-muted d-block">date</small>
+							<span th:text="${enq.subject}" class="text-truncate d-block">Enquiry Message</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		Chart.js
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script th:inline="javascript">
+		const ctx = document.getElementById('complaintChart');
+		var complaintMonths = [[${complaintMonths}]];
+		var complaintCounts = [[${complaintCounts}]];
+		
+		new Chart(ctx, {
+		  type: 'line',
+		  data: {
+		    labels: complaintMonths,
+		    datasets: [{
+		      label: 'Complaints',
+		      data: complaintCounts,
+		      borderColor: 'green',
+		      backgroundColor: 'rgba(0, 128, 0, 0.1)',
+		      borderWidth: 2,
+		      tension: 0.3,
+		      fill: true,
+		      pointRadius: 5
+		    }]
+		  }
+		});
+		</script>
+
+
+      Hover & Animation Styles
+      <style>
+        .stat-card {
+          transition: transform 0.2s, box-shadow 0.2s;
+          cursor: pointer;
+        }
+        .stat-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+      </style>
+		
+	</main>
+</body>
+</html>
+
+
+ -->
+ 
+ 
+
+
+<html th:replace="~{Admin/Adminbase::layout(~{::main})}">
+<head>
+    <title>Admin Command Center</title>
+</head>
+<body>
+    <main style="background-color: #020617; min-height: 100vh; padding: 25px; color: #f8fafc;">
+        
+        <style>
+            :root {
+                --cyber-green: #22c55e;
+                --cyber-blue: #3b82f6;
+                --cyber-orange: #f59e0b;
+                --cyber-red: #ef4444;
+                --cyber-purple: #a855f7;
+                --panel-bg: #0f172a;
+                --border-light: rgba(255, 255, 255, 0.1);
+                --text-bright: #ffffff;
+                --text-sub: #cbd5e1;
+            }
+
+            /* --- Header Panel --- */
+            .header-panel {
+                background: #0f172a;
+                border: 1px solid var(--cyber-green);
+                border-left: 6px solid var(--cyber-green);
+                border-radius: 12px;
+                padding: 25px;
+                margin-bottom: 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            }
+
+            /* --- Stat Card Styling (Investigator Style) --- */
+            .stat-card-adv {
+                background: #0f172a;
+                border-radius: 15px;
+                padding: 25px;
+                text-align: center;
+                transition: all 0.3s ease;
+                border: 1px solid var(--border-light);
+                height: 100%;
+            }
+
+            .stat-card-adv:hover {
+                transform: translateY(-10px);
+            }
+
+            .stat-icon {
+                font-size: 2.2rem;
+                margin-bottom: 12px;
+                display: inline-block;
+            }
+
+            /* Color Specific Glow & Borders */
+            .border-blue { border-bottom: 4px solid var(--cyber-blue); }
+            .border-blue:hover { border-color: var(--cyber-blue); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2); }
+            
+            .border-green { border-bottom: 4px solid var(--cyber-green); }
+            .border-green:hover { border-color: var(--cyber-green); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2); }
+            
+            .border-purple { border-bottom: 4px solid var(--cyber-purple); }
+            .border-purple:hover { border-color: var(--cyber-purple); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2); }
+
+            .border-orange { border-bottom: 4px solid var(--cyber-orange); }
+            .border-orange:hover { border-color: var(--cyber-orange); box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2); }
+
+            .border-red { border-bottom: 4px solid var(--cyber-red); }
+            .border-red:hover { border-color: var(--cyber-red); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2); }
+
+            .stat-label-adv {
+                color: var(--text-sub);
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .stat-number-adv {
+                font-size: 2.2rem;
+                font-weight: 800;
+                color: #ffffff;
+                display: block;
+            }
+
+            /* Chart & Enquiries Panel */
+            .content-panel {
+                background: #1e293b;
+                border-radius: 12px;
+                padding: 20px;
+                border: 1px solid var(--border-light);
+            }
+
+            .enquiry-item {
+                background: rgba(255,255,255,0.03);
+                border-radius: 8px;
+                padding: 12px;
+                margin-bottom: 10px;
+                border: 1px solid rgba(255,255,255,0.05);
+            }
+        </style>
+
+        <div class="header-panel">
+            <div class="row align-items-center">
+                <div class="col-sm-8">
+                    <h2 class="text-white mb-1 fw-bold">Admin <span style="color: var(--cyber-green)">Dashboard</span></h2>
+                    <p class="text-sub m-0">Welcome back, <strong class="text-white" th:text="${session.loggedInAdmin.name}">User</strong>. System monitoring active.</p>
+                </div>
+                <div class="col-sm-4 text-sm-end">
+                <div class="d-inline-block text-end me-3 align-middle">
+                        <div class="text-bright fw-bold" th:text="${session.loggedInAdmin.email}">admin@email.com</div>
+                        <span class="badge bg-success small">Security Level: High</span>
+                    </div>
+                    <img class="rounded-circle border border-2 border-success" style="width:65px; height:65px; object-fit: cover;" 
+                         th:src="@{${session.loggedInAdmin.profilePic != null ? '/Profile/' + session.loggedInAdmin.profilePic : '../assets/images/user/avatar-2.jpg'}}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="stat-card-adv border-blue">
+                    <i class="ti ti-users-group stat-icon" style="color: var(--cyber-blue)"></i>
+                    <span class="stat-label-adv">Investigators</span>
+                    <span class="stat-number-adv" th:text="${totalInvestigators}">0</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card-adv border-green">
+                    <i class="ti ti-file-analytics stat-icon" style="color: var(--cyber-green)"></i>
+                    <span class="stat-label-adv">Total Complaints</span>
+                    <span class="stat-number-adv" th:text="${totalComplaints}">0</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card-adv border-purple">
+                    <i class="ti ti-help-hexagon stat-icon" style="color: var(--cyber-purple)"></i>
+                    <span class="stat-label-adv">Enquiries</span>
+                    <span class="stat-number-adv" th:text="${totalEnquiries}">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-5">
+            <div class="col-md-3">
+                <div class="stat-card-adv border-orange">
+                    <span class="stat-label-adv text-warning">Pending</span>
+                    <span class="stat-number-adv" th:text="${processingComplaints}">0</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card-adv border-red">
+                    <span class="stat-label-adv text-danger">Rejected</span>
+                    <span class="stat-number-adv" th:text="${rejectComplaints}">0</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card-adv border-blue">
+                    <span class="stat-label-adv text-primary">In-Progress</span>
+                    <span class="stat-number-adv" th:text="${processingComplaints}">0</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card-adv border-green">
+                    <span class="stat-label-adv text-success">Resolved</span>
+                    <span class="stat-number-adv" th:text="${resolvedComplaints}">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="content-panel p-4">
+                    <h5 class="text-white fw-bold mb-4"><i class="ti ti-chart-line me-2 text-success"></i> Activity Intelligence</h5>
+                    <canvas id="complaintChart" height="130"></canvas>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="content-panel">
+                    <h5 class="text-white fw-bold mb-4"><i class="ti ti-mail-fast me-2 text-success"></i> Recent Enquiries</h5>
+                    <div class="custom-scroll" style="max-height: 380px; overflow-y: auto;">
+                        <div th:each="enq : ${enquiries}" class="enquiry-item">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span style="color: var(--cyber-green); font-weight: 700;" th:text="${enq.name}">User</span>
+                                <span style="color: #94a3b8; font-size: 0.75rem;" th:text="${#temporals.format(enq.enquiryDate, 'dd MMM yyyy')}">Date</span>
+                            </div>
+                            <div class="text-truncate small" th:text="${enq.subject}">Subject text...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
+         <script th:inline="javascript">
+            const ctx = document.getElementById('complaintChart');
+            new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: [[${complaintMonths}]],
+                datasets: [{
+                  label: 'Complaints Filed',
+                  data: [[${complaintCounts}]],
+                  borderColor: '#22c55e',
+                  backgroundColor: 'rgba(34, 197, 94, 0.15)',
+                  borderWidth: 4,
+                  tension: 0.4,
+                  fill: true,
+                  pointBackgroundColor: '#ffffff',
+                  pointBorderColor: '#22c55e',
+                  pointRadius: 6,
+                  pointHoverRadius: 8
+                }]
+              },
+              options: {
+                plugins: { legend: { labels: { color: '#f8fafc', font: { weight: 'bold' } } } },
+                scales: {
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#cbd5e1', font: { size: 12 } } },
+                    x: { grid: { display: false }, ticks: { color: '#cbd5e1', font: { size: 12 } } }
+                }
+              }
+            });
+        </script>
+    </main>
+</body>
+</html>
+

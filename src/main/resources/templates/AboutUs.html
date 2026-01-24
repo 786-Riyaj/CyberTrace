@@ -1,0 +1,666 @@
+<!-- <html th:replace="~{base::layout(~{::main})}">
+<!-- 
+<body>
+	<main>
+		Hero Banner
+		<section class="about-hero d-flex align-items-center">
+			<div class="container text-center text-white">
+				<h1 class="display-5 fw-bold">About ScamTracker</h1>
+				<p class="lead mt-3">
+					Empowering communities with advanced tools to detect, report, and prevent fraud.
+				</p>
+			</div>
+		</section>
+
+		Who We Are
+		<section class="py-5">
+			<div class="container">
+				<h2 class="section-title text-center mb-5">Who We Are</h2>
+
+				<div class="row align-items-center">
+					<div class="col-md-6 mb-4">
+						<img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600"
+							class="img-fluid shadow rounded" alt="">
+					</div>
+					<div class="col-md-6">
+						<h3 class="mb-3">Leading the Fight Against Scams</h3>
+						<p>
+							ScamTracker is an advanced Case Management System designed to protect individuals,
+							businesses, and organizations from fraudulent activities. Since our launch in 2020,
+							we have built a trusted ecosystem to track scam behavior, analyze patterns, and
+							collaborate with authorities and victims.
+						</p>
+						<p>
+							With a team of cybersecurity experts, investigators, and data analysts, we work
+							tirelessly to ensure safe and secure reporting and monitoring of scam cases.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		Mission & Vision
+		<section class="py-5 bg-light">
+			<div class="container">
+				<h2 class="section-title text-center mb-5">Our Mission & Vision</h2>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="p-4 shadow rounded bg-white h-100">
+							<h4><i class="fas fa-bullseye text-primary me-2"></i> Our Mission</h4>
+							<p class="mt-3">
+								To provide a secure and efficient platform for reporting and tracking scam cases,
+								while offering real-time analytics, alerts, and collaboration tools to enhance
+								fraud prevention efforts.
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="p-4 shadow rounded bg-white h-100">
+							<h4><i class="fas fa-eye text-primary me-2"></i> Our Vision</h4>
+							<p class="mt-3">
+								To create a scam-free society by connecting victims, investigators, and enforcement
+								agencies on a unified platform powered by transparency, technology, and teamwork.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		What We Offer
+		<section class="py-5">
+			<div class="container">
+				<h2 class="section-title text-center mb-5">What We Offer</h2>
+
+				<div class="row text-center">
+					<div class="col-md-4 mb-4">
+						<div class="p-4 feature-card shadow rounded">
+							<i class="fas fa-database feature-icon mb-3"></i>
+							<h5>Advanced Case Tracking</h5>
+							<p>Manage, update, and analyze scam cases with complete accuracy and transparency.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 mb-4">
+						<div class="p-4 feature-card shadow rounded">
+							<i class="fas fa-bell feature-icon mb-3"></i>
+							<h5>Real-Time Alerts</h5>
+							<p>Get instant notifications on suspicious activities, new reports, and case updates.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 mb-4">
+						<div class="p-4 feature-card shadow rounded">
+							<i class="fas fa-lock feature-icon mb-3"></i>
+							<h5>Secure Platform</h5>
+							<p>Bank-level encryption ensures your sensitive information stays safe and confidential.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		Our Team
+		<section class="py-5 bg-light">
+			<div class="container">
+				<h2 class="section-title text-center mb-5">Meet Our Team</h2>
+
+				<div class="row text-center">
+
+					<div class="col-md-4 mb-4">
+						<div class="p-4 shadow rounded bg-white">
+							<img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle mb-3"
+								width="120" alt="">
+							<h5>Saurabh Kumar Gupta</h5>
+							<p class="text-muted">Lead Investigator</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 mb-4">
+						<div class="p-4 shadow rounded bg-white">
+							<img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle mb-3"
+								width="120" alt="">
+							<h5>Riya Singh</h5>
+							<p class="text-muted">Cybersecurity Expert</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 mb-4">
+						<div class="p-4 shadow rounded bg-white">
+							<img src="https://randomuser.me/api/portraits/men/61.jpg" class="rounded-circle mb-3"
+								width="120" alt="">
+							<h5>Sudheer Verma</h5>
+							<p class="text-muted">Java Developer</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		Contact Link
+		<section class="py-5 text-center">
+			<h3>Need More Information?</h3>
+			<p>Contact our support team and get your queries resolved.</p>
+			<a href="/contact" class="btn btn-primary btn-lg">
+				<i class="fas fa-envelope me-2"></i> Get in Touch
+			</a>
+		</section>
+
+	</main>
+	
+	
+</body>
+
+</html>  -->
+
+
+
+
+
+
+
+
+<html th:replace="~{base::layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<main>
+		<style>
+:root {
+	--primary-color: #22c55e; /* Bright Green */
+	--dark-bg: #020617; /* Slate Black */
+	--card-bg: #0f172a; /* Deep Slate Blue */
+	--text-main: #e5e7eb; /* Light Grayish White */
+	--text-muted: #94a3b8; /* Slate Gray */
+}
+
+main {
+	background-color: var(--dark-bg);
+	color: var(--text-main);
+	font-family: 'Inter', sans-serif;
+}
+
+/* --- Header & Footer Sync --- */
+header, .navbar, footer, .contact-footer-bar {
+	background-color: #020617 !important;
+	border-top: 1px solid rgba(34, 197, 94, 0.3) !important;
+	border-bottom: 1px solid rgba(34, 197, 94, 0.3) !important;
+}
+
+/* --- Hero Section --- */
+.hero-wrap {
+	padding: 120px 0 80px;
+	background: radial-gradient(circle at top center, rgba(34, 197, 94, 0.07),
+		transparent);
+	text-align: center;
+}
+
+.hero-title {
+	font-size: 3.5rem;
+	font-weight: 800;
+	color: #ffffff;
+}
+
+.hero-title span {
+	color: var(--primary-color);
+	text-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+}
+
+/* --- Mission & Vision Cards --- */
+.cyber-card {
+	background: var(--card-bg);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	border-radius: 20px;
+	padding: 40px;
+	height: 100%;
+	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cyber-card:hover {
+	border-color: var(--primary-color);
+	transform: translateY(-8px);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cyber-card h3 {
+	color: var(--primary-color);
+	font-weight: 700;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.cyber-card p {
+	color: var(--text-main);
+	font-size: 1.1rem;
+	line-height: 1.8;
+	opacity: 0.9;
+}
+
+/* --- Expertise Section --- */
+.expertise-grid {
+	background: rgba(15, 23, 42, 0.5);
+	border-radius: 30px;
+	padding: 70px 40px;
+	margin: 60px 0;
+	border: 1px dashed rgba(34, 197, 94, 0.2);
+}
+
+.exp-item {
+	transition: 0.3s;
+}
+
+.exp-item i {
+	font-size: 3.2rem;
+	color: var(--primary-color);
+	margin-bottom: 20px;
+	display: block;
+}
+
+.exp-item h5 {
+	color: #fff;
+	font-weight: 700;
+}
+
+.exp-item:hover {
+	transform: scale(1.05);
+}
+
+/* --- Experts Hover Effect --- */
+.expert-box {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.expert-img-wrapper {
+	width: 180px;
+	height: 180px;
+	margin: 0 auto 20px;
+	border-radius: 24px;
+	overflow: hidden;
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.5s ease;
+	background: #020617;
+}
+
+.expert-img-wrapper img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: grayscale(100%);
+	transition: 0.5s;
+}
+
+.expert-box:hover .expert-img-wrapper {
+	border-color: var(--primary-color);
+	box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+	transform: translateY(-10px) rotate(-3deg);
+}
+
+.expert-box:hover img {
+	filter: grayscale(0%);
+	transform: scale(1.1);
+}
+
+.expert-box h5 {
+	color: #fff;
+	font-weight: 700;
+	margin-top: 15px;
+}
+
+.expert-box p {
+	color: var(--primary-color);
+	font-weight: 600;
+	font-size: 0.9rem;
+}
+
+/* --- Contact Footer Bar --- */
+.contact-footer-bar {
+	background: #020617;
+	padding: 50px 0;
+	border-top: 1px solid rgba(34, 197, 94, 0.2);
+	margin-top: 80px;
+}
+
+.cert-img {
+	height: 55px;
+	filter: contrast(1.2) brightness(1.2);
+	margin-right: 20px;
+}
+</style>
+
+
+		<section class="hero-wrap">
+			<div class="container text-center">
+				<h1 class="hero-title">
+					About <span>CyberTrace</span>
+				</h1>
+
+				<p class="lead mt-4 mx-auto"
+					style="color: var(--text-main); max-width: 850px; font-size: 1.25rem; line-height: 1.8; font-weight: 500;">
+					CyberTrace is a comprehensive cyber crime reporting and digital
+					investigation platform developed to tackle the growing threats of
+					online scams, financial frauds, and organized cyber crimes.</p>
+			</div>
+		</section>
+
+		<section class="py-5">
+			<div class="container">
+				<div class="row g-4">
+					<div class="col-lg-6">
+						<div class="cyber-card">
+							<h3>Digital Investigation Hub</h3>
+							<p>The platform offers a secure and centralized environment
+								where individuals and organizations can report cyber incidents
+								and submit critical digital evidence such as transaction
+								records, screenshots, and logs. By streamlining the
+								investigation process, CyberTrace significantly reduces manual
+								workload and improves operational efficiency for cyber cells.</p>
+							<div class="mt-4">
+								<div class="d-flex align-items-center mb-3">
+									<i class="fas fa-check-circle me-3 "
+										style="color: var(--primary-color);"></i> <span>Real-time
+										status updates & monitoring</span>
+								</div>
+								<div class="d-flex align-items-center mb-3">
+									<i class="fas fa-check-circle me-3 "
+										style="color: var(--primary-color);"></i> <span>Structured
+										communication lifecycle</span>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="cyber-card">
+							<h3>Security & Transparency</h3>
+							<p
+								style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
+								Acting as a strong bridge between victims and law enforcement,
+								we ensure transparency and accountability. Advanced access
+								controls, secure data storage, and audit logging ensure that
+								sensitive information remains protected at every stage.</p>
+							<hr style="border-color: rgba(255, 255, 255, 0.1);">
+							<p
+								style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
+								Designed with scalability in mind, CyberTrace maintains
+								performance and reliability across large-scale deployments,
+								ensuring justice is never delayed by technology limits.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<section class="py-5">
+			<div class="container">
+				<div class="row g-4">
+					<div class="col-lg-6">
+						<div class="cyber-card">
+							<h3>
+								<i class="fas fa-shield-alt me-3"></i>Our Mission
+							</h3>
+							<p>Our mission is to protect organizations from evolving
+								cyber threats by leveraging deep digital forensics and AI-driven
+								intelligence. We work to identify, analyze, and neutralize cyber
+								crimes efficiently, ensuring that sensitive data and digital
+								assets remain secure at all times</p>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="cyber-card">
+							<h3>
+								<i class="fas fa-eye me-3"></i>Our Vision
+							</h3>
+							<p>CyberTrace envisions a fraud-free digital world where
+								cyber security is proactive rather than reactive. We aim to
+								become a global leader by building intelligent technologies
+								capable of detecting and preventing malicious activities before
+								they cause harm.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="expertise-grid text-center">
+					<h2 class="fw-bold mb-5" style="letter-spacing: 4px; color: #fff;">CORE
+						EXPERTISE</h2>
+					<div class="row g-5">
+						<div class="col-md-4 exp-item">
+							<i class="fas fa-fingerprint"></i>
+							<h5>Digital Forensics</h5>
+							<p style="color: var(--text-muted);">Uncovering hidden
+								patterns in complex digital evidence.</p>
+						</div>
+						<div class="col-md-4 exp-item">
+							<i class="fas fa-project-diagram"></i>
+							<h5>Threat Intelligence</h5>
+							<p style="color: var(--text-muted);">Real-time monitoring of
+								emerging cyber-attack vectors.</p>
+						</div>
+						<div class="col-md-4 exp-item">
+							<i class="fas fa-biohazard"></i>
+							<h5>Incident Response</h5>
+							<p style="color: var(--text-muted);">Rapid action to contain
+								and mitigate security breaches.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="py-5" style="background-color: #020617;">
+			<div class="container">
+				<div class="text-center mb-5">
+					<h2 class="fw-bold" style="font-size: 2.8rem; color: #ffffff;">
+						Our Elite <span style="color: var(--primary-color);">TeamMeet
+							Ou 
+					</h2>
+					<p style="color: var(--text-muted);">The architects of your
+						digital defense.</p>
+				</div>
+
+				<style>
+/* Main Card: Deep Dark Background */
+.expert-card-new {
+	position: relative;
+	background: #0f172a; /* Card Color */
+	border-radius: 15px;
+	border: 1px solid rgba(34, 197, 94, 0.1);
+	overflow: hidden;
+	transition: all 0.4s ease-in-out;
+	height: 400px;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Image Section: Sharp and Clear */
+.expert-img-part {
+	width: 100%;
+	height: 100%; /* Default Full Height */
+	position: relative;
+	transition: all 0.5s ease;
+	z-index: 2;
+	overflow: hidden;
+}
+
+.expert-img-part img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+	filter: grayscale(100%); /* B&W initially */
+	transition: filter 0.5s ease, transform 0.5s ease;
+	image-rendering: -webkit-optimize-contrast; /* Sharpness fix */
+}
+
+/* Overlay on Image (Name & Role) */
+.name-overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 25px 20px;
+	background: linear-gradient(to top, #020617 30%, transparent);
+	opacity: 0;
+	transition: 0.4s;
+}
+
+.name-overlay h5 {
+	color: var(--primary-color);
+	margin: 0;
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+
+.name-overlay span {
+	color: #ffffff;
+	font-size: 0.85rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* Bottom Detail (Hidden) */
+.expert-detail-part {
+	width: 100%;
+	height: 0;
+	background: #0f172a;
+	padding: 0 20px;
+	opacity: 0;
+	transition: all 0.5s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.expert-detail-part p {
+	font-size: 0.9rem;
+	color: #e5e7eb; /* High contrast text */
+	margin: 0;
+	line-height: 1.5;
+}
+
+/* --- HOVER EFFECTS --- */
+.expert-card-new:hover {
+	border-color: var(--primary-color);
+	box-shadow: 0 0 25px rgba(34, 197, 94, 0.15);
+	transform: translateY(-5px);
+}
+
+/* Photo moves up (65% height) */
+.expert-card-new:hover .expert-img-part {
+	height: 65%;
+}
+
+/* Photo becomes sharp color */
+.expert-card-new:hover img {
+	filter: grayscale(0%);
+	transform: scale(1.02); /* Very subtle zoom to keep it sharp */
+}
+
+.expert-card-new:hover .name-overlay {
+	opacity: 1;
+}
+
+/* Details slide up (35% height) */
+.expert-card-new:hover .expert-detail-part {
+	height: 35%;
+	opacity: 1;
+	padding: 20px;
+	border-top: 1px solid rgba(34, 197, 94, 0.2);
+}
+</style>
+
+				<div class="row g-4 justify-content-center">
+					<div class="col-lg-3 col-md-6">
+						<div class="expert-card-new">
+							<div class="expert-img-part">
+								<img
+									src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+									alt="CEO">
+								<div class="name-overlay">
+									<h5>Brijesh Mishra</h5>
+									<span>CEO & Founder</span>
+								</div>
+							</div>
+							<div class="expert-detail-part">
+								<p>10+ years in Forensic Strategy and Global Cyber Law
+									Compliance.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="expert-card-new">
+							<div class="expert-img-part">
+								<img
+									src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800"
+									alt="CTO">
+								<div class="name-overlay">
+									<h5>Adil Siddiqui</h5>
+									<span>Chief Tech Officer</span>
+								</div>
+							</div>
+							<div class="expert-detail-part">
+								<p>Specialist in AI-driven threat hunting and secure network
+									architecture.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="expert-card-new">
+							<div class="expert-img-part">
+								<img
+									src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800"
+									alt="Lead">
+								<div class="name-overlay">
+									<h5>Manish Yadav</h5>
+									<span>Forensics Lead</span>
+								</div>
+							</div>
+							<div class="expert-detail-part">
+								<p>Expert in deep-data recovery and digital evidence mining
+									from encrypted logs.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- <section class="contact-footer-bar">
+					<div class="container">
+						<div class="row align-items-center">
+							<div
+								class="col-md-6 d-flex align-items-center mb-4 mb-md-0 justify-content-center justify-content-md-start">
+								<img
+									src="https://www.iso.org/files/live/sites/isoorg/files/about%20ISO/isologo.png"
+									class="cert-img" alt="ISO Logo">
+								<div class="border-start ps-3 border-secondary">
+									<h6 class="mb-0 fw-bold text-white">ISO 27001 Certified</h6>
+									<p class="mb-0 small" style="color: var(--text-muted);">Data
+										Privacy & Security Standard</p>
+								</div>
+							</div>
+							<div class="col-md-6 text-center text-md-end">
+								<p class="mb-2 text-white">
+									<i class="fas fa-phone-alt me-2"
+										style="color: var(--primary-color);"></i> +00 123 456 789
+								</p>
+								<p class="mb-0 text-white">
+									<i class="fas fa-envelope me-2"
+										style="color: var(--primary-color);"></i> help@cybertrace.com
+								</p>
+							</div>
+						</div>
+					</div>
+				</section> -->
+	</main>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!-- <html th:replace="~{Investigator/Investigatorbase::layout(~{::main})}">
+<body>
+	<main>
+
+		<div class="row">
+			<div class="col-sm-7 mx-auto">
+				<div class="card shadow">
+
+					<div class="card-header bg-primary">
+						<h4 class="m-0 text-center text-white">My Profile</h4>
+					</div>
+
+					<div class="card-body text-center" th:if="${user != null}">
+
+						PROFILE PIC
+						<img width="150" height="150"
+							class="rounded-circle border shadow mb-3"
+							th:src="@{${user.profilePic != null
+               ? '/Profile/' + user.profilePic
+               : '/assets/images/user/avatar-2.jpg'}}">
+
+						<br>
+
+						<button class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal"
+							data-bs-target="#profilePicModal">Update Profile Picture
+						</button>
+						<a href="UpdateProfilePic" class="btn btn-sm btn-primary mb-3">
+										<span>Update Profile Pic</span>
+									</a>
+
+									
+
+						
+
+						PROFILE DETAILS
+						<table class="table table-bordered text-start">
+							<tr>
+								<th>Name</th>
+								<td th:text="${user.name}"></td>
+							</tr>
+							<tr>
+								<th>Email</th>
+								<td th:text="${user.email}"></td>
+							</tr>
+							<tr>
+								<th>Contact No</th>
+								<td th:text="${user.contactNo}"></td>
+							</tr>
+							<tr>
+								<th>Gender</th>
+								<td th:text="${user.gender}"></td>
+							</tr>
+							<tr>
+								<th>Address</th>
+								<td th:text="${user.address}"></td>
+							</tr>
+							
+							 <tr>
+							 <th>Govt. Id</th>
+							 <td><a th:href="@{'/IdProof/' + ${user.govtIdProof}}"
+											th:text="${user.name} +' Govt. Id'" target="_blank"></a></td>
+							 
+							 </tr> 
+						</table>
+
+						<button class="btn btn-warning mt-2" data-bs-toggle="modal"
+							data-bs-target="#changePasswordModal">Change Password</button>
+							
+							<a href="ChangePassword" class="btn btn-warning mt-2">	
+										<span>Change Password</span>
+									</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		PROFILE PIC MODAL
+		<div class="modal fade" id="profilePicModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form th:action="@{/Investigator/UpdateProfilePic}"
+              method="post"
+              enctype="multipart/form-data">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Profile Picture</h5>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="file"
+                           name="profilePic"
+                           class="form-control"
+                           accept="image/*"
+                           required>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit"
+                            class="btn btn-success">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+		CHANGE PASSWORD MODAL
+		<div class="modal fade" id="changePasswordModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+      <form th:action="@{/Investigator/ChangePassword}" method="post">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Change Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <input type="password" name="oldPassword"
+                 class="form-control mb-2"
+                 placeholder="Old Password" required>
+
+          <input type="password" name="newPassword"
+                 class="form-control mb-2"
+                 placeholder="New Password" required>
+
+          <input type="password" name="confirmPassword"
+                 class="form-control"
+                 placeholder="Confirm Password" required>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">
+            Change Password
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+			</div>
+		</div>
+
+		<script>
+			var msg = "[[${msg}]]";
+			if (msg !== "") {
+				alert(msg);
+			}
+		</script>
+
+	</main>
+</body>
+</html>
+
+ -->
+ 
+ <html th:replace="~{Investigator/Investigatorbase::layout(~{::main})}">
+<body>
+    <main style="background-color: #020617; min-height: 100vh; padding: 30px 15px;">
+        
+        <style>
+            :root {
+                --cyber-green: #22c55e;
+                --panel-bg: #0f172a;
+                --text-bright: #ffffff;
+                --text-dim: #cbd5e1;
+                --border-line: rgba(34, 197, 94, 0.25);
+            }
+
+            /* --- SIDEBAR HIDE & WIDTH FIX --- */
+            body { overflow-x: hidden !important; width: 100%; position: relative; }
+            .pc-sidebar, .pc-container, .pc-header { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+            .pc-sidebar-hide .pc-sidebar { transform: translateX(-100%); visibility: hidden; position: absolute; }
+            .pc-sidebar-hide .pc-header, .pc-sidebar-hide .pc-container { left: 0 !important; margin-left: 0 !important; width: 100% !important; }
+
+            /* --- Profile Card Design --- */
+            .profile-card {
+                background: var(--panel-bg);
+                border: 1px solid var(--border-line);
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            }
+
+            .profile-header {
+                background: rgba(34, 197, 94, 0.1);
+                border-bottom: 2px solid var(--cyber-green);
+                padding: 15px;
+            }
+
+            .profile-header h4 {
+                color: var(--cyber-green);
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                font-size: 1.1rem;
+            }
+
+            .profile-img-container img {
+                border: 3px solid var(--cyber-green);
+                padding: 5px;
+                background: #020617;
+                box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+            }
+
+            /* --- Table Sync --- */
+            .info-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+            .info-table th {
+                background: rgba(255, 255, 255, 0.03);
+                color: var(--cyber-green);
+                font-size: 0.85rem;
+                padding: 12px 15px;
+                width: 35%;
+                font-weight: 700;
+                text-transform: uppercase;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .info-table td {
+                color: var(--text-bright);
+                font-size: 0.9rem;
+                padding: 12px 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            /* --- Buttons --- */
+            .btn-cyber {
+                font-size: 0.75rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: 8px 18px;
+                border-radius: 4px;
+                transition: 0.3s;
+            }
+            .btn-update-pic { background: var(--cyber-green); color: #000; border: none; }
+            .btn-update-pic:hover { background: #1aaa4b; box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
+            
+            .btn-pwd { background: transparent; border: 1px solid #eab308; color: #eab308; }
+            .btn-pwd:hover { background: #eab308; color: #000; }
+
+            .govt-id-link {
+                color: #3b82f6;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 0.85rem;
+            }
+            .govt-id-link:hover { text-decoration: underline; }
+        </style>
+
+        <div class="row">
+            <div class="col-sm-7 mx-auto">
+                <div class="profile-card">
+                    
+                    <div class="profile-header text-center">
+                        <h4 class="m-0"><i class="fas fa-user-circle me-2"></i> Investigator Profile</h4>
+                    </div>
+
+                    <div class="card-body text-center p-4" th:if="${user != null}">
+                        
+                        <div class="profile-img-container mb-3">
+                            <img width="140" height="140"
+                                class="rounded-circle"
+                                th:src="@{${user.profilePic != null
+                                   ? '/Profile/' + user.profilePic
+                                   : '/assets/images/user/avatar-2.jpg'}}">
+                        </div>
+
+                        <a href="UpdateProfilePic" class="btn btn-cyber btn-update-pic mb-4">
+                            <i class="fas fa-camera me-1"></i> Update Profile Pic
+                        </a>
+
+                        <div class="table-responsive">
+                            <table class="info-table text-start">
+                                <tr>
+                                    <th><i class="fas fa-user me-2"></i> Full Name</th>
+                                    <td th:text="${user.name}"></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-envelope me-2"></i> Email Address</th>
+                                    <td th:text="${user.email}"></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-phone me-2"></i> Contact No</th>
+                                    <td th:text="${user.contactNo}"></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-venus-mars me-2"></i> Gender</th>
+                                    <td th:text="${user.gender}"></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-map-marker-alt me-2"></i> Address</th>
+                                    <td th:text="${user.address}"></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-id-card me-2"></i> Govt. ID</th>
+                                    <td>
+                                        <a th:href="@{'/IdProof/' + ${user.govtIdProof}}"
+                                           class="govt-id-link" target="_blank">
+                                            <i class="fas fa-external-link-alt me-1"></i> View ID Proof
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="mt-4">
+                            <a href="ChangePassword" class="btn btn-cyber btn-pwd">
+                                <i class="fas fa-key me-1"></i> Change Password
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var msg = "[[${msg}]]";
+            if (msg !== "" && msg !== "null") {
+                alert(msg);
+            }
+        </script>
+
+    </main>
+</body>
+</html>
